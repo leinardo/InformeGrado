@@ -1,50 +1,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Author:  Pablo Alvarado
+% Author:  Reinaldo Castro González
+% 
+% Este documento está basado en la tesis del M.Sc. Carlos Salazar
+%
+% Según la plantilla desarrollada por el Dr. Pablo Alvarado
 %
 % Escuela de Ingeniería Electrónica
 % Instituto Tecnológico de Costa Rica
 %
 % Tesis de Licenciatura
 % 
-% Phone:   +506 550 2106
-% Fax:     +506 591 6629
+% Phone:   +506 2550 2106
+% Fax:     +506 2591 6629
 % email:   palvarado@ietec.org
 %
 % $Id: main.tex 1513 2010-08-15 01:25:24Z palvarado $
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Modificado por Francis López Montero
-%Listados:
-% \begin{compactitem} 
-% \item....
-% \item....
-% \item....
-% \end{compactitem}
-
-%Listados Numerados: 
-% \begin{enumerate}
-% \item....
-% \item....
-% \item....
-% \end{enumerate}
-
-%Voltear figuras:
-%\begin{landscape}
-%	\begin{figure}[b]
-% 		\centering
-%  		\includegraphics[width=1.5\textwidth]{Barrel_Shifter.pdf} %Imagenes en PDF no se degradan
-%  		\caption{Diagrama de bloques del barrel shifter diseñado para la normalización de datos en el módulo de suma/resta de la FPU}
-%  		\label{fig:bs}	
-%	\end{figure}
-%\end{landscape}
-
 % \documentclass is book
 \documentclass[12pt,twoside,letterpaper]{book}
 
 \usepackage[utf8]{inputenc}
 \usepackage{ifthen}                     % provide if-then-else operators
-
+\usepackage{listings}
+%\usepackage{verbatim}
 \usepackage{paralist} %fancy list of figures
 \usepackage{multirow}
 \usepackage{mathtools}
@@ -76,10 +56,10 @@
 % GENERAL AUTHOR, TITLE AND KEYWORDS
 %
 % Nombre del Estudiante
-\newcommand{\scriptAuthor}{Nombre Apellido}
+\newcommand{\scriptAuthor}{Reinaldo Castro González}
 
 % Título de la tesis
-\newcommand{\scriptTitle}{Diseño de ...} 
+\newcommand{\scriptTitle}{Desarrollo de un flujo de diseño para circuitos integrados digitales que genere un archivo GDS correcto para la fabricación del proyecto SiRPA en una tecnología CMOS de 0.13 micrómetros.} 
 
 % Keywords
 \newcommand{\scriptKeywords}{palabras, clave, ...}
@@ -135,8 +115,7 @@
 \ifdraft{%
   % todo's                                              % TODOs
   \listoftodo
-}{%
-}
+}{}
 
   \include{notation}                                    % Notation
   \include{glosario}                                    % Abbreviation
@@ -152,8 +131,9 @@
   % Main files
   \include{intro}
   \include{teoria}
-  \include{solucion}
-  \include{resultados}
+  \include{scripting}
+  \include{syn_asp}
+  \include{imp_alu}
   \include{conclusiones}
 
   %----------------------------------------------------------------------------

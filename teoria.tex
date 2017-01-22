@@ -1,180 +1,184 @@
 \chapter{Marco Teórico}
 \label{ch:marco}
+\subsection*{Diseño de ASICs}
 
-\section{Descripción}
+{Esta tesis no pretende exponer el proceso de fabricación de un circuito integrado, esa información puede encontrarse en un libro de texto sobre diseño VLSI; sin embargo, en las secciones siguientes se expondrá brevemente, la metodología que se esta usando para que a futuro se pueda llevar a cabo la implementación de un sistema sobre un dado de silicio (silicon dice), entendiendo por dado el espacio que el sistema propuesto ocupará sobre la oblea de silicio, al final del proceso de fabricación.
 
-Toda tesis hace referencia a trabajos previos en el área y trabajos afines que
-están directamente relacionados con lo planteado en el tesis.
+Comercialmente la manufacturación de ASICs no es rentable para aplicaciones de envergadura pequeña, ya que un proceso de fabricación fácilmente alcanza los millones de dolares, si se tiene una proyección comercial baja o nula esta opción queda descartada, la forma más fácil de implementar un diseño en un chip sería venderle la idea o diseño a un fabricante.
 
-Además, en el marco teórico debe aparecer la información absolutamente
-necesaria para comprender la solución, y por eso es recomendable escribir
-primero la solución (el siguiente capítulo), para ir anotando qué debe ser
-explicado en el marco teórico.
+No obstante, venderle la idea o diseño a un fabricante implica revelar información sensible sobre el producto y el fabricante probablemente este trabajando con su competencia por lo que revelarle su trabajo a un fabricante tampoco es la mejor opción.
 
-\section{Generalidades}
+Sin embargo, es posible hacer el proceso de diseño, posteriormente generar un archivo que contenga toda la información estrictamente necesaria para que el fabricante pueda implementar el diseño sobre el chip, sin tener revelar la información sensible que se pretende proteger.
 
-Se recomienda revisar las guías de publicación de la \nt{IEEE} en
-\url{http://www.ieee.org/publications_standards/publications/authors/authors_journals.html},
-donde puede encontrar cómo hacer referencias bibliográficas correctamente, cómo
-citar ecuaciones, tablas y figuras, etc.  
+Esta suele ser la opción más viable para los pequeños investigadores; no obstante, existe la problemática que este tipo de servicio alcanza precios muy elevados sobre todo si se pretende emplear los procesos más modernos y las tecnologías de vanguardia.
 
-\subsection{Redacción}
+En respuesta a la problemática de no tener suficientes fondos para concretar una fabricación, existe el servicio de óbleas multiproposito de la universidad de Berkeley (\textit{MOSIS}).
 
-La \nt{redacción} en todo el documento debe seguir un estilo científico
-objetivo. Esto implica que se redacta de modo impersonal, sin utilizar primeras
-personas del singular o del plural, y se evita el uso de cualquier tipo de
-calificativo, sustituyéndolos siempre por datos concretos, vinculados a
-referencias bibliográficas o datos experimentales. Los comparativos también
-deben concretarse a hechos y datos, y nunca dejarse ``en el aire''. Por la
-naturaleza de la tesis, el tiempo verbal es usualmente presente, no perdiendo
-nunca de vista que se está explicando ``cómo hacer algo'', en vez de ``qué se
-hizo''.
+La funcionalidad de implementar sistemas sobre chips (SoC) tiene grandes ventajas respecto a sistemas embebidos o implementados mediante software de alto nivel.
 
-Las \nt{frases} deben ser cortas, y debe evitarse que el lector tenga que saltar
-constantemente entre partes de la tesis, lo que implica una exposición lineal
-clara, donde lo que se necesita ya ha sido explicado antes. Deben evitarse
-redundancias y por tanto cada concepto se exponen en un único lugar.
+En primera instancia producir un sistema en un circuito integrado representa una mejor protección para los derechos intelectuales, pues su contenido difícilmente es reproducible. Un circuito integrado presenta enormes facilidades de portabilidad debido a su tamaño y su consumo energético. Lo cual es el principal objetivo del proyecto: "Sonidos Ilegales".
 
-Todo aspecto circunstancial es irrelevante para la tesis, es decir, si se ha
-desarrollado en el laboratorio $X$, o en el curso $Y$, con el profesor $Z$, o
-en la empresa $W$, el nombre de funciones o clases en su código, etc., es
-información irrelevante para reproducir el experimento, y por lo tanto sobra.
-Numeración del documento
+\subsection*{Sobre la tecnología de fabricación}
 
-La primera página de la tesis es la correspondiente a la introducción, así que
-ésta debe ser la página 1. Desde la introducción, hasta antes de la
-bibliografía, las unidades son ``Capítulos''. La bibliografía y anexos no se
-consideran capítulos, así que ya no continúan con la misma numeración de los
-capítulos (la paginación sí continua). Los índices, notación, glosario, etc. se
-numeran con números romanos en minúscula (i,ii,iii,iv,v,vi...) y antes del
-índice (portada, resúmenes, agradecimientos, hoja de evaluadores, etc.) las
-páginas no llevan numeración. 
+Para el presente proyecto se hace uso de la tecnología de IBM CMOS8RF (CMRF8SF), esta tecnología cuenta con una alta densidad de lógica CMOS de  0.13 $\mu$m destinada a aplicaciones de señal mixta, en ámbitos asociados al procesamiento analógico y de radio frecuencia . Entre las generalidades del proceso, cabe destacar que cuenta con 8 capas de metal, y la tensión $V_{DD}$ de los dispositivos se encuentra en un rango de 1.2 V a 1.5 V.\\
 
-Esta plantilla LaTeX ya se ocupa de todo lo anterior.
+\section{Tipos de diseño circuitos integrados digitales}
 
-\subsection{Ecuaciones}
+La clasificación del diseño de circuitos integrados se puede apreciar en el esquema de la figura \ref{ICs}.
 
-Para citar \nt{ecuaciones} se utilizan paréntesis redondos, y no es necesario
-emplear la palabra ``ecuación''. Por ejemplo ``Introduciendo en (4.2) los
-resultados de (3.3) y (3.7) se obtiene ...''. La ecuación es parte del flujo de
-texto y no un objeto flotante, así que no pueden emplearse como figuras. Cuando
-se requiere la ecuación, allí se inserta.  
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{Tipos_de_ICs.jpeg}
+\centering
+\caption{Tipos de Diseño de Circuitos Integrados}
+\label{ICs}
+\end{figure}
+Como podemos observar el diseño de circuitos integrados (De aquí en adelante ICs\footnote{ICs: acrónimo en inglés para circuitos integrados}) se puede clasificar a grosso modo en 3 tipos principales:
 
-\subsection{Figuras}
+\subsection{\textbf{ICs totalmente personalizados}}
 
-Para el almacenamiento de imágenes existen dos tipos de formato: las imágenes
-raster y las imágenes vectoriales.\index{imagen!raster}
+En esta metodología de trabajo los diseñadores generan todas las celdas lógicas de acuerdo con las necesidades tiene el diseño que se pretende realizar, esto contempla desde la concepción funcional, lógica y física de cada celda. También se desarrollan las máscaras necesarias para la fabricación del chip sobre la oblea de silicio.
 
-Las imágenes raster son representadas por una rejilla de píxeles, en donde cada
-píxel tiene un valor que representa al nivel de gris o el color. La
-discretización espacial es ineludible, y la única forma de obtener buena
-calidad es empleando tamaños grandes de la imagen que conduzcan a resoluciones
-de al menos 300 puntos por pulgada en la impresión, lo que conlleva a archivos
-de documentos de varios megabytes. Dentro de los formatos para almacenar
-imágenes raster existen algunos con pérdida (como el JPEG) que producen en
-imágenes sintéticas, como diagramas, estructuras ruidosas que dan una
-apariencia de baja calidad a las figuras. Otros formatos (como PNG, BMP, TIFF o
-GIF) no tiene pérdidas de información, pero los algoritmos de compresión no
-pueden reducir el tamaño de las imágenes con los mismos factores de reducción
-que los formatos con pérdidas. Este tipo de formatos debe utilizarse únicamente
-para fotografías o capturas de escenas reales con cámaras digitales.
+Empresas como Intel son un buen ejemplo de industrias dedicadas al desarrollo de circuitos integrados totalmente personalizados, aquí los ingenieros invierten enormes cantidades de tiempo maximizando el aprovechamiento de cada micrómetro cuadrado disponible en el dado, lo que les permite incluir circuitos analógicos, optimizar celdas de memoria e incluso contemplar y mejorar la eficiencia mecánica de las estructuras de conexión y ubicación de los componentes del chip.
 
-\index{imagen!vectorial}
-Las imágenes vectoriales \textbf{deben} ser empleadas en todo tipo de
-diagrama. En ellas no se almacenan píxeles, sino las estructuras geométricas
-que componen la figura como círculos (representado por posicion de su centro y
-su radio), rectángulos (representados por sus esquinas), líneas, texto, etc. La
-mayoría de programas para elaborar este tipo de diagramas, como Inkscape, XFig,
-OpenOffice.org Draw, MS Visio, Adobe Illustrator, etc. proveen varios formatos
-vectoriales que pueden ser insertados tanto en LaTeX como en OpenOffice.org
-Writer (o MS Word). Los formatos más empleados son los llamados metafiles, que
-incluyen al WMF, EMF. En LaTeX se utiliza por lo general EPS. Recientemente se
-ha incrementado el soporte al formato SVG.
+Sin duda la metodología más costosa de todas. No obstante, la respuesta adecuada si el diseñador necesita de unidades (celdas) más eficientes en términos energéticos y velocidad, de las que es capaz de encontrar en una biblioteca de celdas existentes. Es comúnmente utilizada por empresas dedicadas a la innovación y el desarrollo tecnológico.
 
-No debe cometerse el error de generar una imagen vectorial a partir de una
-imagen raster, pues una vez realizada la discretización espacial no es posible
-reconstruir los elementos geométricos que componen la imagen. Por ello, no
-tiene ningún sentido generar un archivo EPS o WMF a partir de una imagen ya
-almacenada en BMP, JPG, o PNG, pues lo único que ocurrirá es que se inserta la
-figura raster tal cual en la imagen vectorial, sin implicar ninguna ganancia en
-la calidad.
+\subsection{\textbf{ICs programables}}
 
-Esta plantilla de LaTeX administra la generación de ciertas figuras por usted.
-Puede colocar en el directorio \texttt{fig/} archivos EPS, JPG, PNG o GP (de
-GNUPlot) y el Makefile se encarga de hacer todas las conversiones necesarias.
-En las siguientes subsecciones se describen dos casos adicionales que resultan
-útiles para realizar figuras más complejas.
+Estos consisten en dispositivos lógicos programables (PLDs), que son circuitos integrados con configuraciones estándar, predeterminadas. Podemos encontrarlos en algunos ASICs para permitir la personalización de algunas funciones puntuales, es por ello que aunque sean estructuras prediseñadas y flexibles, son consideradas como una rama del diseño de ICs.
 
-\subsubsection{Figuras ltxfig/psfrag}
+\subsection{\textbf{ICs semipersonalizados}}
 
-\index{psfrag}\index{ltxfig}
-Cuando en el subdirectorio \texttt{fig/} se encuentran dos archivos con el
-mismo nombre pero extensiones \texttt{ltxfig} y \texttt{psfrag}, por ejemplo
-\texttt{prueba.ltxfig} y \texttt{prueba.psfrag}, entonces el Makefile asume que
-usted desea crear una figura a partir del archivo \texttt{prueba.ltxfig},
-creado con el programa \texttt{XFig}, sustituyendo los textos ahí presentes con
-texto formateado con LaTeX.
+Son aquellos ICs para los cuales existe una biblioteca de celdas estándar y posiblemente todas las mascaras de diseño están disponibles. El uso de bibliotecas de celdas prediseñadas hace el diseño más fácil. Está metodología de diseño se subdivide en dos partes:
 
-La figura~\ref{fig:ltxfig} ha sido creada con este esquema.  Puede revisar los
-archivos \texttt{ltxfig\_prototipo.*} para más detalles sobre su uso.
+\subsubsection{Basado en arreglos de compuertas}
 
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.9\textwidth]{ltxfig_prototipo}
-  \caption{Ejemplo de imagen ltxfig/psfrag}
-  \label{fig:ltxfig}
+En este tipo de diseño los transistores se encuentran predefinidos en un patrón dado sobre en la oblea de silicio, este patrón se conoce como arreglo base y a los elementos más pequeños se los conoce como celdas base o celdas primitivas.
+
+En esta técnica el diseñador únicamente define la interconexión de las celdas usando para ello máscaras personalizadas. Así el diseñador escoge de entre una basta biblioteca de celdas prediseñadas y precaracterizadas. Las celdas lógicas suelen ser denominadas como macros. La razón de esto se debe a que el layout \footnote{En este contexto, refiere al anglisismo asociado al concepto de diseño físico} de la celda base es el mismo para cada celda lógica y únicamente se personaliza la interconexión y el enrutado dentro de las celdas y con las celdas adyacentes, de manera similar a un macro de software.
+
+Existen subcategorias del uso de esta técnica, pero esa información excede el alcance de esta tésis, por lo que no serán expuestas. Se invita al lector a considerar una bibliografía pertinente \cite{book:johnM1997,book:barrK2006}
+
+\subsubsection{Basado en celdas estándar}
+
+Un circuito integrado basado en celdas estándar usa celdas lógicas prediseñadas como compuertas "Y", "O", "Flip Flops", "Multiplexores", etc... Estas celdas se conocen como celdas estándar.
+
+Suele usarse el término \textit{CBIC} (pronunciado si-bik) para esta categoría. El área de ubicación de las celdas estándar en un \textit{CBIC}, se construye en hileras, de manera similar a una pared de ladrillos, las celdas estándar pueden y suelen ser utilizadas en conjunto a microcontroladores, o microprocesadores, conocidos como "Mega celdas". Este término también se emplea para bloques totalmente personalizados, y suelen ser denominados como: "Macros a Nivel de Sistema (SLMs)", "Mega Funciones", "Bloques Fijos", o "Bloques Funcionales Estándar (FSBs)".
+
+En esta metodología es diseñador define únicamente la colocación y el enrutado (interconexión entre celdas estándar) de las celdas estándar; sin embargo, estás pueden ser colocadas libremente en el área disponible del dado. Esto implica que las máscaras de fabricación en un \textit{CBIC} son únicas para cada cliente.
+
+Usar \textit{CBICs} tiene enormes ventajas ya que permite hacer diseños más flexibles y optimizarlos en términos de aprovechamiento de área, velocidad o consumo energético. Adicionalmente las bibliotecas de celdas estándar suelen ofrecer las mismas celdas estándar prediseñadas para cumplir distintas las expectativas de desempeño, enfocadas a tamaño, velocidad o energía.
+
+Las principales desventajas consisten en que el tiempo necesario para el diseño suele ser elevado, debe comprarse una biblioteca de celdas estándar, y se está sujeto a las restricciones de esta, y finalmente las máscaras de fabricación serán nuevas con cada nuevo diseño o versión de diseño, lo cual implica tiempo adicional, además de costos adicionales por parte del fabricante.
+
+La información de esta sección se tomó a partir de las fuentes \cite{book:raj2008,book:johnM1997,book:raj2008}
+
+\section{Flujo de diseño digital para el diseño de circuitos integrados digitales}
+
+Dada la complejidad en el proceso de diseño de circuitos integrados, es imperativo llevar a cabo un diseño estructurado, que use los principios de jerarquización, modularidad, regularidad y localidad para manejar la complejidad del diseño.
+
+El diseño digital VLSI suele ser particionado en 5 niveles de abstracción: diseño de arquitecturas, diseño de microarquitecturas, diseño lógico, diseño de circuitos y diseño físico. Estas etapas son ejecutadas en paralelo, y en muchas ocasiones son depedientes entre si.
+
+Una manera alternativa de analizar el diseño estructurado es mediante el "diagrama Y" mostrado en la figura \ref{Ychart}. 
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{Gajski_Y_Chart.jpeg}
+\centering
+\caption{Diagrama de Gajski. Espiral que ilustra el flujo digital de diseño de circuitos integrados y cuyas arístas establecen los ámbitos por los que debe atravesar el diseño. Figura de autoría propia, basada en la reproducción de \cite{book:weste2005}, créditos a sus respectivos dueños}
+\label{Ychart}
 \end{figure}
 
-\subsubsection{Figuras pstricks}  
+El diagrama de Gajski o diagrama Y, permite entender el concepto de abstracción en el diseño digital, pues se parte desde un concepto general de diseño y al interiorizar en el diagrama se desvelan las etapas que llevan hasta la fabricación correcta del circuito integrado.
 
-\index{pstricks}
-Los archivos con extensión \texttt{.pstricks} en el directorio \texttt{fig} se
-utilizan para generar cualquier tipo de imágenes según el código que se
-contenga.  Es un concepto más general que el anterior.  La
-figura~\ref{fig:pstricks} ha sido creada con este esquema.  Puede revisar los
-archivos \texttt{prototipo\_gnuplot*} como un ejemplo de su uso, en donde de un
-archivo gnuplot (\texttt{\_.gp}) se genera un archivo \texttt{\_.eps}, el cual
-es incluido en el archivo \texttt{.pstricks} sustituyendo cadenas de texto por
-código LaTeX.
+El dominio por comportamiento describe qué hace el sistema, seguidamente en el dominio estructural, el cual expone la interconexión de los módulos capaces de realizar el comportamiento deseado, eventualmente a los niveles de abstracción más bajos donde se describen las compuertas individuales y las conexiones entre los transistores que las componen. Finalmente en cada nivel de abstracción del dominio físico se explica como se construye físicamente ese nivel de abstracción, en los niveles más altos se considera el diseño del floorplan del chip, donde en esencia se , y consecuentemente al internarse en los niveles más profundos se describen la geometría actual de cada transistor individual.
 
-\begin{figure}[htb]
-  \centering
-  \includegraphics{prototipo_gnuplot}
-  \caption{Ejemplo de imagen gnuplot/pstricks}
-  \label{fig:pstricks}
+El proceso de diseño puede verse como la transformación desde un dominio hacia otro manteniendo la equivalencia de los dominios. Las descripciones por comportamiento se transforman en descripciones estructurales y estas a su vez son transformadas en descripciones físicas. Cada transformación es validada, ya sea manualmente o mediante herramientas automatizadas. La especificación jerárquica de cada dominio y sucesivamente detallando sus niveles de abstracción es lo que permite diseñar grandes sistemas. 
+
+La razón para describir en detalle los niveles de abstracción y los respectivos dominios es para definir un proceso de diseño en el cual la función final del sistema es capaz de rastrearse hasta la descripción por comportamiento inicial.
+
+El diagrama Y muestra las transformaciones entre cada dominio y las variaciones entre los niveles de abstracción. El flujo de diseño procede desde los anillos exteriores hacia los interiores, profundizando en niveles de abstracción cada vez más complejos, de acuerdo a una jerarquía establecida.
+
+El apartado anterior corresponde a una libre interpretación de la sección 1.6 de \cite{book:weste2005}.
+
+\subsection{Generalidades del flujo de diseño digital}
+\label{sec:gen_d_flow}
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{Flujo_Digital.jpeg}
+\centering
+\caption{Esquema representativo e ilustrativo del flujo de diseño de circuitos integrados digitales}
+\label{Dflow1}
+\end{figure}
+
+Como se mencionó en el apartado anterior, el diseño comienza a dar sus pasos en cuanto es concebida una función o proceso y su comportamiento ha sido modelada en un algoritmo, ya sea secuencial, concurrente o una mezcla de ambos. Este algoritmo se traduce a un lenguaje estandarizado, el cual en el caso de los circuitos integrados digitales corresponde a un \textit{HDL}, que en términos concretos es la descripción digital del circuito integrado o el modelo digital.
+
+Partiendo del modelo digital se puede hacer una verificación de comportamiento, que en términos técnicos se denomina simulación lógica, el modelo digital no es más que un objeto de alto nivel capaz de emular el comportamiento deseado. Su utilidad es poca para el diseñador, ya que no provee datos sobre el desempeño del diseño, únicamente provee 
+información a nivel de comportamiento; sin embargo, es el punto de partida en el flujo de diseño.
+
+Una vez que la simulación lógica es satisfactoria, se procede a usar el modelo por comportamiento y asociar los módulos descritos en él, con unidades lógicas provistas de características de retardos (sincronización de señales), consumo energético, y área, las cuales se encuentran en la biblioteca de la tecnología que se usará en la fabricación. A este proceso se le conoce como síntesis lógica, y genera una base de datos que contiene datos de las celdas estándar y las conexiones entre ellas para ejecutar las funciones abstraídas del modelo de comportamiento.
+
+La base de datos creada en el proceso de síntesis permite generar un nuevo modelo codificado en \textit{HDL} y una primera aproximación del desempeño de los módulos diseñados, i.e. un modelo con la información sobre los retardos de propagación de las señales en las celdas y entre las mismas, generar un presupuesto de la energía disipada y el área necesaria para ubicar las celdas usadas. Este nuevo modelo, denominado como modelo post-síntesis nuevamente es simulado con el mismo arreglo o banco de pruebas usado en la simulación por comportamiento.
+
+La simulación post-síntesis permite observar el retardo de propagación de las señales, y confirmar si las expectativas de sincronización son alcanzadas, también permite verificar si los datos son generados en los plazos necesarios, y poder garantizar una funcionalidad correcta de los módulos y el diseño en lo concerniente al desempeño de las celdas estándar. 
+
+Cuando los resultados obtenidos en la síntesis lógica y la simulación respectiva sean satisfactorios, se toma el modelo post-síntesis y se usa esta información para empezar con el floorplan del chip. Las celdas estándar son invocadas a un área determinada, y posteriormente se establecen las conexiones que permiten implementar los módulos abstraídos en la primera etapa del diseño (el modelo de comportamiento). Este proceso recibe el nombre de síntesis física o implementación física, en esta tésis se usará la palabra síntesis para referirse a la síntesis lógica, y la palabra implementación será usada para referirse a la síntesis física.
+
+Una vez hecho lo anterior, se genera una nueva base de datos, la cual tendrá información más precisa sobre el diseño, nuevamente en términos de sincronización de señales, consumo energético y aprovechamiento de área, incluyendo los retardos debido a los efectos parasíticos, la distancia que debe recorrer una señal al conectarse de una celda a otra o un puerto, etc, las perdidas resistivas del alambrado, entre otros efectos que serán expuestos más adelante.
+
+Nuevamente se genera una base de datos con la información del colocamiento y el enrutado (Place\&Route), así como los efectos sobre el tiempo de propagación de las señales, mediante la esta base de datos se generan, un modelo codificado en \textit{HDL} para la verificación del diseño, y el modelo de los efectos sobre el temporizado y la sincronización de las señales. En esta etapa es posible obtener una respuesta más precisa del diseño. Al igual que en la etapa anterior también se crean reportes de consumo energético, aprovechamiento de área, calidad de resultados, etc.
+
+Cuando una simulación post-implementación es satisfactoria se procede a dar por concluído el flujo, y a continuación se establecen 2 panorámas.
+
+En el primer caso nuestro diseño está completo por lo que se procede a compilar la base de datos en un archivo estándar para condensar la información necesaria para el fabricante, y este valorará si el diseño tiene probabilidades altas de ser fabricado con éxito, siendo así la información suministrada será usada para desarrollar las máscaras necesarias para la construcción del chip.
+
+En el segundo escenario consiste en que el diseño en el que se ha estado trabajando no es el producto final, sino que forma parte de otro diseño más complejo y grande, el cual aún no se haya terminado, en ese caso la base de datos servirá para generar una macro celda que será utilizada en diseños posteriores.
+
+En la figura \ref{Dflow1} se aprecia un resumen gráfico de la explicación anterior.
+
+\subsection{Flujo de diseño digital en las herramientas de Synopsys}
+
+Synopsys es una empresa que brinda herramientas de diseño asistido por computadora (CAD), para la automatización de procesos en el diseño de circuitos integrados. El flujo de diseño digital suele ser similar independientemente del proveedor de las herramientas; sin embargo, esta tesis gira entorno a los softwares de Synopsys, por lo que se expondrá la metodología de diseño usando este proveedor.
+
+\subsection{Front End}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{Front_End.jpeg}
+\centering
+\caption{Esquema ilustrativo del flujo de diseño de circuitos integrados digitales, enfocado a las herramientas de síntesis lógica, en esencia las herramientas de Front End}
+\label{fe}
 \end{figure}
 
 
-\subsection{Referencias bibliográficas}
+El término "Front End", es un concepto en inglés asociado a la jerga del desarrollo de software, y significa interfaz; sin embargo, en el caso del diseño de circuitos integrados, no se generan softwares y tampoco interfaces. Una traducción más literal, y por lo tanto, menos elegante del concepto sería "Fachada", y es en esencia con lo que el diseñador interactúa en la primer etapa del diseño.
 
-\index{referencias}\index{BibTeX}
-Todo concepto o idea tomado de otros autores contar con la respectiva
-referencia. En redacción técnica de ingeniería rara vez se utiliza la cita
-textual, así que es necesario reformular las ideas y conceptos con palabras
-propias. En ingeniería electrónica se utilizan los formatos de referencia de la
-IEEE o la ACM, que son numéricos, encerrados entre paréntesis cuadrados (por
-ejemplo, ``En \cite{Davis1963} se propuso un nuevo algoritmo'', o ``En
-\cite{ProakisManolakis1998} los autores proponen tomar las ventajas de los
-algorimos presentados en \cite{Oppenheim1998,Roberts2005,Haykin2001} por medio
-del método de Newton \cite{Burrus1998} conocido en el área de optimización
-lineal.''). La referencia es parte de las frases, así que si la frase termina
-con la referencia para indicar la idea, ésta debe estar antes del punto final o
-demás signos de puntuación: ``La capacidad de memoria también sigue una Ley
-similar a la de Moore \cite{Octave}. Los siguientes son los aspectos a tomar en
-cuenta en el diseño del sistema \cite{Lindner2002}:''
+Al decir que el diseñador interactúa con una fachada, se debe entender que el diseñador trabaja con el cascarón de un elemento que intrínsecamente no es circuito electrónico como tal, si no un modelo abstracto que presenta un comportamiento de causa efecto, el cual, naturalmente, es acorde a la semántica de la lógica digital, o lógica binaria. Recurriendo nuevamente a la jerga del software, podemos entender el front end o fachada como aquello relacionado con un objeto de alto nivel, que ofrece un vector de respuestas de acuerdo con la dinámica de un vector de estímulos.
 
-Se recomienda utilizar BibTeX para administrar las referencias bibliográficas.
+El diseñador comienza a acercarse al diseño del circuito integrado, considerando y definiendo los aspectos principales de la fachada. Retomando el diagrama de Gajski (figura \ref{Ychart}), el proceso de "Front-End" consiste en la transición del modelo de comportamiento a un modelo estructurado, que se asocia con las funciones de las celdas estándar ofrecidas por la tecnología y el fabricante.
 
-\subsection{Extensión}
+Condensando lo anterior, las herramientas de "Front-End" de un proveedor, son aquellas que ejecutan o facilitan el proceso de síntesis lógica en el flujo digital del diseño de circuitos integrados. En el caso de "Synopsys", estas herramientas son principalmente "Design Compiler" y "VCS", existen otras herramientas adicionales asociadas a la familia de "Design Compiler", "VCS" y el "Shell" de "Design Compiler" son las principales y suelen ser suficientes.
 
-\index{extensión}
-Una tesis de licenciatura no debe sobrepasar las 120 páginas incluyendo
-apéndices y los formalismos desde portada hasta índices.
+En la figura \ref{fe} se aprecia un diagrama que ilustra como el proceso expuesto en la sección \ref{sec:gen_d_flow}, es implementado por las herramientas de "Synopsys" todos los procesos en el diseño de circuitos integrados tienen un componente iterativo, y en este diagrama vemos como antes de avanzar en el flujo, se atraviesa por etapas a las que se recurre con frecuencia, estas etapas son las simulaciones por comportamiento y post-síntesis. La depuración de la etapa de síntesis es esencial para garantizar el éxito final del proyecto, por lo que las simulaciones tienen una gran importancia.
 
-El cuerpo de la tesis (desde introducción hasta conclusiones) usualmente se
-extiende desde 45 páginas hasta no más de 80, dependiendo de la problemática
-tratada.
+Cómo se observa desde el diagrama de Gajski (figura \ref{Ychart}), las herramientas de "front end" traducen el diseño por comportamiento en modelos de altos nivel de circuitos digitales, aunque como tal no se trabajan con circuitos lógicos reales, y para efectos prácticos el diseñador nunca trabaja realmente con elementos lógicos y digitales, las herramientas proveen la virtualización del comportamiento diseñado, mediante una biblioteca de simulación, las celdas estándar abstraídas en el proceso de síntesis, se comportarán como un elemento de circuito digital real, de ahí que se pueda validar si la etapa de síntesis cumple las expectativas del diseñador.
 
-No es necesario reproducir contenidos de otras fuentes: agregue las referencias
-a dichas fuentes, y limítese a enunciar lo estrictamente necesario para
-comprender sus propuestas de solución.
+\newpage
+\subsection{Back End}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{Back_End.jpeg}
+\centering
+\caption{Esquema ilustrativo del flujo de diseño de circuitos integrados digitales, enfocado a las herramientas de síntesis lógica, en esencia las herramientas de Front End}
+\label{be}
+\end{figure}
+
+Se refiere a aquellos procedimientos relacionados con la constitución interna de un proyecto, nuevamente se emplea el anglicismo "Back End" para referirse a dichos procesos. No existe un concepto en español capaz de traducir el significado de esta palabra, pero se podría entender como todos aquellos aspectos ocultos al macro diseñador, entendiendo por oculto, una serie de elementos compuestos por elementos más simples hasta llegar a las unidades fundamentales de la electrónica moderna, i.e. transistores. Una analogía curiosa, y que ilustra bien esta situación es la de la muñeca matryoshka \cite{book:matryoshka}, cada muñeca contiene a otra muñeca más pequeña, y se interioriza así hasta alcanzar una pequeña muñeca que no contiene a ninguna otra.
+
+En el proceso de diseño de circuitos integrados, semipersonalizados, y basados en celdas estándar, el diseñador no alcanza a trabajar directamente con transistores, o con los elementos que componen las celdas, si no, que da por hecho que las celdas estándar son funcionales y parte de ellas para generar nuevas macroceldas, y con las cuales se ejecutarán las funciones establecidas por el macromodelado del funcionamento del diseño.
+
+En síntesis de lo anterior, el diseñador de "back end" trabaja con las etapas ocultas para los diseñadores de comportamiento, y síntesis del diseño, dónde los primeros establecen la semántica del diseño, y los segundos generan cajas negras que realizan las funciones descritas por sus antecesores, estas cajas negras manifiestan el comportamiento de una unidad electrónica real, en términos de consumo energético, área, y tiempos de propagación de señales, pero no dejan de ser modelos de alto nivel que no son circuitos electrónicos como tales, y es por ello que ha esta etapa se le denomina fachada.
+
+En el proceso de "back end" las cajas negras abstraídas en el proceso de síntesis adquieren información más realista y equivalente a la de una celda física real. Esto podemos apreciarlo en la figura \ref{Dflow1} en el extremo derecho de la figura vemos como se muestran las etapas del flujo, en el dominio estructural, donde operan las herramientas de síntesis, aquí se muestran los bloques funcionales a nivel lógico. Al descender en el flujo expuesto en la misma figura, observamos la celda estándar que se abstrae del diseño estructurado, y su layout o implementación física, donde se aprecian los metales que interconectan las celdas y los transistores que componen las celdas.
+
+Las herramientas de "back end" se encargan de facilitar el colocado y enrutado de las celdas estándar que se abstrajeron de la síntesis lógica. En el "back end" se asocia la base de datos post síntesis con la base de datos de la tecnología, invocando celdas físicas para generar un nuevo layout que implemente el diseño sintetizado. "Synopsys" cuenta con una herramienta llamada "IC Compiler", este software le permite al diseñador establecer los criterios de optimización del layout en términos de aprovechamiento de área, colocación selectiva para mejorar la eficiencia del consumo energético, sincronización de señales críticas, como lo es una señal de reloj, definir criterios de alambrado (enrutado) para sopesar las pérdidas resistivas, controlar fenómenos de electromigración y radiación o antena.
+
+
+
+
