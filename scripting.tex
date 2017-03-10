@@ -1,18 +1,6 @@
 \chapter{Flujo de Diseño Digital de Circuitos Integrados con las herramientas de Synopsys. Estructura de Scripting}
 \label{ch:scripting}
 
-% Primero que todo, jamás utilice el título indicado arriba, sino algo
-% relacionado con su solución: ``Sistema de corrección de distorsión'' o lo que
-% competa a su tesis en particular.
-
-% Este capítulo puede separarse en varias secciones, dependiendo del problema
-% concreto. Aquí los algoritmos o el diseño del sistema deben quedar lo
-% suficientemente claros para que otra persona pueda re-implementar al sistema
-% propuesto. Sin embargo, el enfoque no debe nunca concentrarse en los detalles
-% de la implementación particular realizada, sino del diseño conceptual como tal.
-
-% Recuerdese que toda figura y tabla deben estar referenciadas en el texto.
-
 A continuación se detalla la estructura propuesta para implementar un flujo de diseño de circuitos integrados, y se expone como fueron sometidos los módulos de un microprocesador ASP RISC-V, con el fin de demostrar la efectividad del flujo de diseño digital propuesto. Esta estructura está basada en el manual sobre el uso de las herramientas de Synopsys en el flujo de diseño de ASICs, del Instituto Tecnológico de Costa Rica \cite{FlujoJairo2016}.
 
 La siguiente estructura dista considerablemente de la propuesta en \cite{FlujoJairo2016} y que a su vez está basada en el manual \cite{kommuru2009asic}. En estos trabajos las estructuras se basan en ejemplos simples con diseños \textit{HDL} relativamente pequeños. La siguiente estructura toma como premisa que se trabaja con diseños muy grandes por lo que se requiere de mayor eficiencia en la generación de las bases de datos y archivos necesarios para el diseño.
@@ -106,12 +94,10 @@ Por último tenemos el directorio \textbf{mems}, el cual es un directorio bastan
 
 En este directorio (\textbf{mems}), se encuentran dos directorios principales, \textbf{mem\_inst}, el cual contiene los ejecutables de las herramientas de \textit{ARM} para sintetizar las memorias, es importante que sólo exista una única copia de este directorio, ya que es muy pesado (en términos de espacio, cerca de 2 GB), y generaría saturación en un repositorio, que se debe mantener simple y con la menor densidad posible. El otro directorio es \textbf{mem\_work}, el cual contiene el resultado de la síntesis de las celdas \textit{SRAM} y finalmente \textbf{vclef} el cual es un archivo con la información de los metales y el enrutado de la celda \textbf{SRAM} física, este último se crea con el fin de facilitar la ejecución de la herramienta \textit{Milkyway} y generar las base de datos necesarias para los procesos de \textit{back end}. Nuevamente esto será discutido en detalle en un apartado posterior.
 
-% \section{Scripting}
 
-% Como se ha visto, el flujo de diseño digital se divide en dos etapas principales, \textit{front end} y \textit{back end}. En la parte de \textit{fron end}, se establece la siguiente jerarquía de scripting.
 
 \section{Scripts de Front End}
-
+\label{sec:syn_s}
 \subsection{Script de síntesis lógica}
 \label{script_syn}
 En la figura \ref{s_syn} se observa como la síntesis lógica se ejecuta mediante tres scripts, dos de los cuales son auxiliares al script de síntesis, los scripts se nombran de acuerdo con un nombre representativo del diseño con el que se trabaja, aunque suele ser conveniente nombrar los archivos de la misma manera al módulo principal, si este nombre es muy largo, es preferible optar por un nombre representativo.
@@ -221,7 +207,7 @@ Una vez que las restricciones de diseño han sido definidas y propagadas. Se pro
 \label{comp}
 \end{figure}
 
-Retomando la figura \ref{s_syn} recordamos que el bloque de compilación nuevamente es representado por un diamante de decisión, este diamante no refiere a un evento programático, si no a una etapa en la que el diseñador deberá evaluar si la compilación del diseño es satisfactoria. En esencia la compilación se corrobora mediante la solicitud de reportes a la herramienta, en este punto las bibliotecas compiladas en el directorio \textit{alib-52} y los alias creados en el script de inicialización son bastante útiles, ya es posible repetir el procedimiento de compilación con relativa facilidad y rapidez.
+Retomando la figura \ref{s_syn} recordamos que el bloque de compilación nuevamente es representado por un diamante de decisión, este diamante no refiere a un evento programático, si no a una etapa en la que el diseñador deberá evaluar si la compilación del diseño es satisfactoria. En esencia la compilación se corrobora mediante la solicitud de reportes a la herramienta, en este punto las bibliotecas compiladas en el directorio \textit{alib-52} y los alias creados en el script de inicialización son bastante útiles, ya que es posible repetir el procedimiento de compilación con relativa facilidad y rapidez.
 
 Es conveniente desviar los resultados de la síntesis (compilación) hacia archivos, para mantener un registro. Esto permite llevar un registro del comportamiento de los diseños, y en caso de que se deba se podrá consultar el resultado de un proyecto anterior, para así evaluar si de ser necesario incluirlo en otro proyecto, ese proyecto anterior cumple las expectativas para el nuevo diseño.
 
@@ -294,7 +280,7 @@ La simulación post síntesis requiere que el simulador genere un objeto de alto
 \end{figure}
 
 \section{Scripts de Back End}
-
+\label{sec:phy_s}
 \subsection{Script de implementación o síntesis física}
 Las herramientas de \textit{Synopsys} siguen un patrón similar en la ejecución de los flujos de síntesis. Nuevamente, conviene tener variables relativas hacia los directorios clave para que la implementación pueda ser ejecutada sin importar la ruta absoluta hacia los directorios. Además se deben definir las variables nativas de la herramienta que garantizan que el flujo será exitoso, tal como los punteros e identificadores hacia las bibliotecas.
 
@@ -378,7 +364,7 @@ El problema únicamente se presenta en la fabricación del chip cuando las conex
 
 La herramienta previene los problemas de antena, verificando la entrada de cada celda\footnote{En esencia la herramienta comprueba las conexiones entre el metal de los cables y las compuertas de los transistores de entrada de las celdas}, si se determina una relación  de áreas propensa a un antena entonces la herramienta colocará un diodo de protección para desviar una posible descarga electrostática.
 
-La definición de las reglas de antena está intrínsicamente relacionada al proceso de fabricación y el radio entre el área del cable y la compuerta lo define el proveedor de la tecnología.
+La definición de las reglas de antena está intrínsecamente relacionada al proceso de fabricación y el radio entre el área del cable y la compuerta lo define el proveedor de la tecnología.
 
 Para considerar inserción de diodos y evitar los efectos de antena se establecieron los siguientes criterios:
 
@@ -414,13 +400,13 @@ Cuando se tiene un enrutado satisfactorio se procede a insertar las celdas de re
 
 Finalmente queda exportar los reportes y generar los archivos de salida. Respecto a los reportes se genera información congruente con lo expuesto en la sección anterior sobre la síntesis lógica (sección \ref{script_syn}), así que no se ahondará de nuevo en ello.
 
-Los archivos de salida generados son similares a los de la síntesis lógica, nuevamente tenemos un código \textit{HDL} (donde se replica uno para simulación) que contiene el "gate-level-netlist" del diseño implementado, un archivo con extensión \textbf{.sdf} con la información de los retardos entre las señales, que es más preciso al generado en la síntesis lógica pues contempla el efecto del cableado, con un modelo muy cercano al real.
+Los archivos de salida generados son similares a los de la síntesis lógica, nuevamente tenemos un código \textit{HDL} (donde se replica uno para simulación) que contiene el "gate-level-netlist" \textit{GLN} del diseño implementado, un archivo con extensión \textbf{.sdf} con la información de los retardos entre las señales, que es más preciso al generado en la síntesis lógica pues contempla el efecto del cableado, con un modelo muy cercano al real.
 
 Otro archivo de gran importancia corresponde a los archivos con extensión \textbf{.spef} para esto es necesario ejecutar la extracción de los efectos \textit{RC} es decir los retardos parasíticos, el cual le indica a la herramienta que efectué un análisis de retardos usando el modelo de Elmore \cite{book:weste2005} para lo anterior es necesario haber definido los archivos \textit{TLUPlus} que se mencionaron anteriormente.
 
 Un archivo \textbf{.spef} es una lista con información de las parasitancias relativas a las celdas usadas en la implementación del diseño y le permiten a herramientas como \textit{PrimeTime} hacer un modelado más preciso de los tiempos de sincronización que puede ofrecer el analizador del \textit{IC-Compiler}. Se generan archivos para condiciones mínimas y/o máximas si se han definido los escenarios en el diseño, esto último se relaciona con las condiciones esquina que se abstraen de la biblioteca de la tecnología.
 
-El último archivo de salida relevante para el flujo corresponde al archivo \textbf{.def}, el cual es un compendio de la información física del diseño, incluyendo información del \textit{layout}, el \textit{netlist} y las restricciones de diseño. La herramienta permite exportar un archivo con toda o alguna de la información del diseño, por ejemplo podría generarse un archiv \textit{.def} únicamente con la información de las vías.
+Los últimos archivos de salida relevantes para el flujo corresponde al archivo \textbf{.def} y el \textbf{GDS}, ambos consisten en compendios de la información física del diseño, incluyendo información del \textit{layout}, el \textit{netlist} y las restricciones de diseño. La herramienta permite exportar un archivo con toda o alguna de la información del diseño, por ejemplo podría generarse un archiv \textit{.def} únicamente con la información de las vías. El archivo \textbf{GDS} es corresponde al formato estándar con el que los que se intercambia información con el fabricante, este archivo contiene toda la información necesaria para el desarrollo de las máscaras del proceso de diseño, así también como detalles particulares del proceso de fabricación. En este proyecto no fue necesario generar este archivo ya que el trabajo de integración no está completo.La figura \ref{fig:phy_script} resume lo expuesto en este apartado mediante un diagrama de flujo.
 
 \begin{figure}[ht]
 \includegraphics[width=\textwidth]{phy_syn.jpeg}
@@ -428,8 +414,6 @@ El último archivo de salida relevante para el flujo corresponde al archivo \tex
 \caption{Diagrama de flujo que expone el proceso genérico de la implementación física en la herramienta \textit{IC Compiler}}
 \label{fig:phy_script}
 \end{figure}
-
-La figura \ref{fig:phy_script} resume lo expuesto en este apartado mediante un diagrama de flujo.
 
 \subsection{Script de simulación física: evaluación post implementación}
 
@@ -475,7 +459,7 @@ El flujo de análisis expuesto en la figura \ref{fig:stascript}, expone un uso r
 Los reportes generados usan motores similares a los que generan el análisis en las herramientas de síntesis; sin embargo, son más robustos en términos de profundidad y variedad en el análisis. Herramientas como \textit{Design Compiler} y \textit{IC Compiler} usan un modelado dinámico del diseño, valiéndose del peor escenario de propagación de señales, determinado mediante el modelo de Elmore. \textit{PrimeTime} permite usar modelos estáticos y es capaz de analizar distintos escenarios y estimular el diseño de diversas formas, para así evaluar el desempeño de la propagación de señales en distintos bloques de lógica, puramente combinacional, registros, puertos y/o distintas combinaciones de todos ellos.
 
 \section{Script de síntesis de IP Cores y bibliotecas autónomas}
-
+\label{sec:ip_syn}
 Este apartado corresponde a una particularidad en el flujo de diseño digital propuesto, ya que no todos los diseños requieren incluir \textit{IPCores}\footnote{Un IPCore, o bloque de propiedad intelectual consiste en un módulo que no ofrece información sobre como es su arquitectura interna. Y su representación consiste en una caja negra. Esto con el fin de proteger la propiedad intelectual}, y la inclusión de los programas necesarios para su inclusión, irrumpe en la regularidad de la estructura de directorios definida anteriormente (ver inicio del capitulo \ref{ch:scripting}).
 
 El flujo del diseño de las \textit{IP Cores}  requiere de 3 herramientas extra, la primera y principal corresponde al sintetizador de memorias de la tecnología utilizada, en este caso corresponde al software para la generación de : Artisan ARM Physical IP. Esta herramienta (Artisan) es un generador de \textit{IP Cores} para celdas de memorias (SRAM y ROM) del proceso IBM CMRF8SF-RVT, que es el proceso usado en este trabajo. La herramienta puede ser invocada a través de scripts, aunque también cuenta con una interfaz gráfica, bastante amigable.
@@ -526,6 +510,7 @@ En primera instancia cabe destacar que determinar la eficiencia de una estructur
 
 Como se mencionó al inicio del capítulo, la forma en que los directorios y archivos fueron dispuestos responde a tres criterios, regularidad, localidad y continuidad. La estructura mostrada en la figura \ref{directorios} presenta una alta regularidad pues la mayoría de directorios tienen la misma jerarquía. Es continua, pues como puede observarse en las figuras \ref{beha_sim}, \ref{psyn_sim} y \ref{fig:phy_sim}, es posible rastrear los productos de los distintos procesos que afectan a los archivos. Finalmente, cuando un archivo es generado no es necesario, replicarlo en ningún otro directorio, los procesos que lo necesiten a posteriori pueden acceder a ellos mediante punteros, definidos en los scripts de los procesos que los requieran.
 
+Finalmente quisiera declarar que lo expuesto en este capítulo tienen como sustento bibliográfico los manuales y páginas man de las herramientas de \textit{Synopsys}. La temática de la implementación del flujo digital respecto al \textit{Scripting} corresponden a una libre interpretación de la información contenida en estos manuales y las páginas man.
 
 
 

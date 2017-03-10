@@ -81,7 +81,7 @@ Dado que se requiere diseñar un circuito integrado digital que parte de una cod
 El proceso de diseño de un circuito integrado es lento, tedioso, y tiene un componente iterativo, esto implica que toma de algún tiempo para que un ingeniero se familiarice con el flujo de diseño, es por ello que aparte de crear el flujo de diseño de un chip sobre la herramientas, es conveniente establecer para futuros proyectos, una estructura de archivos y \textit{\textbf{scripts}}, propios de las herramientas de \textit{Synopsys}, para así facilitar el diseño y rediseño de proyectos futuros del \textit{DCILab}. Como comprobación de la efectividad del flujo de diseño digital anteriormente mencionado, deberán someterse los componentes del \textit{ASP} mediante las herramientas de  \textit{Synopsys}, para su posible fabricación a futuro, y establecer una documentación oportuna para agilizar el trabajo, de los colabores del \textit{DCILab} en cuanto a síntesis sobre silicio respecta.
 
 \subsection{Síntesis de la solución}
-Establecido el panorama anterior, la solución consiste en desarrollar una jerarquía de flujo de diseño digital en las herramientas de \textit{Synopsys}, que permita someter los componentes del \textit{SiRPA} al proceso de síntesis al silicio, según las reglas de diseño del proceso de fabricación de IBM: cmrf8 (IBM013), que es la tecnología a la cual
+Establecido el panorama anterior, la solución consiste en desarrollar una jerarquía de flujo de diseño digital en las herramientas de \textit{Synopsys}, que permita someter los componentes del \textit{SiRPA} (específicamente el microprocesador \textit{ASP}) al proceso de síntesis al silicio, según las reglas de diseño del proceso de fabricación de IBM: cmrf8 (IBM013), que es la tecnología a la cual
 tiene acceso el \textit{DCILab}, y así contar con el proyecto \textit{SiRPA} completo hasta la última etapa previa a su fabricación que será realizada por \textit{MOSIS} en un futuro.
 Cabe destacar que la índole del proyecto y las restricciones del laboratorio en términos de licencias de software solamente permiten una opción de \textit{EDA} \footnote{EDA: Electronic Design Automation. Software usado en la síntesis de circuitos integrados}, la cual es \textit{Synopsys}.
 
@@ -109,6 +109,8 @@ Cabe destacar que la índole del proyecto y las restricciones del laboratorio en
 
 \item {En \cite{Carlosthesis} se expone la necesidad de implementar la unidad de clasificación \textit{HMM} mediante un microprocesador de aplicación específica ya que durante la experimentación en \cite{mio} se determinó que la unidad \textit{HMM} implementada en \cite{Lalfaro} no era correcta.}
 
+\item En cooperación con el trabajo de \cite{Carlosthesis}, se encuentra ella trabajo \cite{Diego2015} donde se expone el proceso de diseño e implementación en un \textit{FPGA} de la unidad de punto flotante (\textit{FPU}) que usará el microprocesador de \cite{Carlosthesis}. Posteriormente \cite{Francis2016} expone la implementación de algunas mejoras para la \textit{FPU} de \cite{Diego2015}.
+
 \end{itemize}
 
 \section{Objetivos}
@@ -130,7 +132,7 @@ Implementar un microprocesador de aplicación específica en una tecnología CMO
 
 \item {Sintetizar lógicamente de manera correcta los módulos RTL del Microprocesador de Aplicación Específica (ASP) sobre celdas estándar de una tecnología CMOS 0,13.}
 
-\item {Sintetizar físicamente de manera correcta la unidad aritmética del microprocesador y la memoria de programa del microprocesador ASP sobre la tecnología CMOS 0,13}
+\item {Sintetizar físicamente de manera correcta la unidad aritmética de punto flotante del microprocesador y las memorias de datos y programa del microprocesador ASP sobre la tecnología CMOS 0,13}
 
 \end{itemize}
 %%% Local Variables: 

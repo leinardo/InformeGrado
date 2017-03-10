@@ -1,13 +1,16 @@
-\chapter{Conclusiones}
+\chapter{Conclusiones y Recomendaciones}
 
-Las conclusiones no son un resumen de lo realizado sino a lo que ha llevado el
-desarrollo del proyecto, no perdiendo de vista los objetivos planteados desde
-el principio y los resultados obtenidos.  En otras palabras, qué se concluye o
-a qué se ha llegado después de realizado el proyecto de graduación.  Un error
-común es ``concluir'' aspectos que no se desarrollaron en la tesis, como
-observaciones o afirmaciones derivadas de la teoría directamente.  Esto último
-debe evitarse.
+\section{Conclusiones}
+Partiendo de una estructura básica para la integración de diseños codificados en \textit{RTL} se ha logrado diseñar una jerarquía de archivos y directorios que permite implementar exitosamente un flujo de diseño de circuitos integrados digitales.
 
-Es usual concluir con lo que queda por hacer, o sugerencias para mejorar los
-resultados.
+Mediante el uso de esta jerárquía fue posible implementar una unidad aritmética de punto flotante y demostrar que es correcta y funcional. Así mismo se demostró que es posible incorporar \textit{IP Cores} dentro del diseño y que los mismos son correctos y funcionales.
 
+Debido a particularidades que se escapan de la visión de este trabajo no fue posible demostrar la funcionalidad del microprocesador RISC-V. Debido a deficiencias en la estructura de su \textit{RTL}, sin embargo, quedó demostrado que el flujo es eficaz y eficiente.
+
+Realizar una evaluación cuantitativa sobre la estructura de \textit{Scripting} diseñada no es posible ya que responde a la visión de una única persona, y su paradigma particular de trabajo. Sin embargo, desde una perspectiva cualitativa y subjetiva, se considera la estructura de \textit{Scripting} eficiente, pues manifiesta atributos como: regularidad, localidad y continuidad.
+
+\section{Recomendaciones}
+
+Se recomienda realizar una iteración en el diseño del microprocesador ASP, enfocado a incorporar una unidad para la programación de las memorias y permitir el \textit{booteo} del microprocesador.
+
+Finalmente recomienda incorporar en una iteración futura optimizaciones asociadas con el área y la potencia de los módulos, incorporando técnicas como \textit{clock gating}, las cuales no fueron utilizadas en este proyecto.
