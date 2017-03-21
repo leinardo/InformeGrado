@@ -1,26 +1,28 @@
-\chapter{Marco Teórico}
+\chapter{Marco teórico}
 \label{ch:marco}
 \subsection*{Diseño de ASICs}
 
-{Esta tesis no pretende exponer el proceso de fabricación de un circuito integrado, esa información puede encontrarse en un libro de texto sobre diseño VLSI; sin embargo, en las secciones siguientes se expondrá brevemente, la metodología que se esta usando para que a futuro se pueda llevar a cabo la implementación de un sistema sobre un dado de silicio (silicon dice), entendiendo por dado el espacio que el sistema propuesto ocupará sobre la oblea de silicio, al final del proceso de fabricación.
+%{Esta tesis no pretende exponer el proceso de fabricación de un circuito integrado, esa información puede encontrarse en un libro de texto sobre diseño VLSI; sin embargo, en las secciones siguientes se expondrá brevemente, la metodología que se esta usando para que a futuro se pueda llevar a cabo la implementación de un sistema sobre un dado de silicio (silicon dice), entendiendo por dado el espacio que el sistema propuesto ocupará sobre la oblea de silicio, al final del proceso de fabricación.
+%
+%Comercialmente la manufacturación de ASICs no es rentable para aplicaciones de envergadura pequeña, ya que un proceso de fabricación fácilmente alcanza los millones de dolares, si se tiene una proyección comercial baja o nula esta opción queda descartada, la forma más fácil de implementar un diseño en un chip sería venderle la idea o diseño a un fabricante.
+%
+%No obstante, venderle la idea o diseño a un fabricante implica revelar información sensible sobre el producto y el fabricante probablemente este trabajando con su competencia por lo que revelarle su trabajo a un fabricante tampoco es la mejor opción.
+%
+%Sin embargo, es posible hacer el proceso de diseño, posteriormente generar un archivo que contenga toda la información estrictamente necesaria para que el fabricante pueda implementar el diseño sobre el chip, sin tener revelar la información sensible que se pretende proteger.
+%
+%Esta suele ser la opción más viable para los pequeños investigadores; no obstante, existe la problemática que este tipo de servicio alcanza precios muy elevados sobre todo si se pretende emplear los procesos más modernos y las tecnologías de vanguardia.
+%
+%En respuesta a la problemática de no tener suficientes fondos para concretar una fabricación, existe el servicio de óbleas multiproposito de la universidad de Berkeley (\textit{MOSIS}).
+%
+%La funcionalidad de implementar sistemas sobre chips (SoC) tiene grandes ventajas respecto a sistemas embebidos o implementados mediante software de alto nivel.
 
-Comercialmente la manufacturación de ASICs no es rentable para aplicaciones de envergadura pequeña, ya que un proceso de fabricación fácilmente alcanza los millones de dolares, si se tiene una proyección comercial baja o nula esta opción queda descartada, la forma más fácil de implementar un diseño en un chip sería venderle la idea o diseño a un fabricante.
-
-No obstante, venderle la idea o diseño a un fabricante implica revelar información sensible sobre el producto y el fabricante probablemente este trabajando con su competencia por lo que revelarle su trabajo a un fabricante tampoco es la mejor opción.
-
-Sin embargo, es posible hacer el proceso de diseño, posteriormente generar un archivo que contenga toda la información estrictamente necesaria para que el fabricante pueda implementar el diseño sobre el chip, sin tener revelar la información sensible que se pretende proteger.
-
-Esta suele ser la opción más viable para los pequeños investigadores; no obstante, existe la problemática que este tipo de servicio alcanza precios muy elevados sobre todo si se pretende emplear los procesos más modernos y las tecnologías de vanguardia.
-
-En respuesta a la problemática de no tener suficientes fondos para concretar una fabricación, existe el servicio de óbleas multiproposito de la universidad de Berkeley (\textit{MOSIS}).
-
-La funcionalidad de implementar sistemas sobre chips (SoC) tiene grandes ventajas respecto a sistemas embebidos o implementados mediante software de alto nivel.
+Este trabajo no pretende exponer el proceso de fabricación de un circuito integrado. En las secciones siguientes se expondrá brevemente, la metodología usanda para que a futuro se pueda llevar a cabo la implementación de un sistema sobre un dado de silicio \footnote{Entendiendo por dado el espacio que el sistema propuesto ocupará sobre la oblea de silicio, al final del proceso de fabricación} (silicon dice), usando las herramientas de Synopsys.
 
 En primera instancia producir un sistema en un circuito integrado representa una mejor protección para los derechos intelectuales, pues su contenido difícilmente es reproducible. Un circuito integrado presenta enormes facilidades de portabilidad debido a su tamaño y su consumo energético. Lo cual es el principal objetivo del proyecto: "Sonidos Ilegales".
 
-\subsection*{Sobre la tecnología de fabricación}
-
-Para el presente proyecto se hace uso de la tecnología de IBM CMOS8RF (CMRF8SF), esta tecnología cuenta con una alta densidad de lógica CMOS de  0.13 $\mu$m destinada a aplicaciones de señal mixta, en ámbitos asociados al procesamiento analógico y de radio frecuencia . Entre las generalidades del proceso, cabe destacar que cuenta con 8 capas de metal, y la tensión $V_{DD}$ de los dispositivos se encuentra en un rango de 1.2 V a 1.5 V.\\
+%\subsection*{Sobre la tecnología de fabricación}
+%
+%Para el presente proyecto se hace uso de la tecnología de IBM CMOS8RF (CMRF8SF), esta tecnología cuenta con una alta densidad de lógica CMOS de  0.13 $\mu$m destinada a aplicaciones de señal mixta, en ámbitos asociados al procesamiento analógico y de radio frecuencia . Entre las generalidades del proceso, cabe destacar que cuenta con 8 capas de metal, y la tensión $V_{DD}$ de los dispositivos se encuentra en un rango de 1.2 V a 1.5 V.\\
 
 \section{Tipos de diseño circuitos integrados digitales}
 
@@ -32,19 +34,19 @@ La clasificación del diseño de circuitos integrados se puede apreciar en el es
 \caption{Tipos de Diseño de Circuitos Integrados}
 \label{ICs}
 \end{figure}
-Como podemos observar el diseño de circuitos integrados (De aquí en adelante ICs\footnote{ICs: acrónimo en inglés para circuitos integrados}) se puede clasificar a grosso modo en 3 tipos principales:
+Como puede observarse el diseño de circuitos integrados (de aquí en adelante ICs\footnote{ICs: acrónimo en inglés para circuitos integrados}) se puede clasificar a grosso modo en tres tipos principales:
 
 \subsection{\textbf{ICs totalmente personalizados}}
 
-En esta metodología de trabajo los diseñadores generan todas las celdas lógicas de acuerdo con las necesidades tiene el diseño que se pretende realizar, esto contempla desde la concepción funcional, lógica y física de cada celda. También se desarrollan las máscaras necesarias para la fabricación del chip sobre la oblea de silicio.
+En esta metodología de trabajo los diseñadores generan todas las celdas lógicas de acuerdo con las necesidades tiene el diseño que se pretende realizar, lo que contempla la concepción funcional, lógica y física de cada celda. También se desarrollan las máscaras necesarias para la fabricación del chip sobre la oblea de silicio.
 
-Empresas como Intel son un buen ejemplo de industrias dedicadas al desarrollo de circuitos integrados totalmente personalizados, aquí los ingenieros invierten enormes cantidades de tiempo maximizando el aprovechamiento de cada micrómetro cuadrado disponible en el dado, lo que les permite incluir circuitos analógicos, optimizar celdas de memoria e incluso contemplar y mejorar la eficiencia mecánica de las estructuras de conexión y ubicación de los componentes del chip.
+Empresas como Intel son un buen ejemplo de industrias dedicadas al desarrollo de circuitos integrados totalmente personalizados. Aquí los ingenieros invierten enormes cantidades de tiempo maximizando el aprovechamiento de cada micrómetro cuadrado disponible en el dado, lo que les permite incluir circuitos analógicos, optimizar celdas de memoria e incluso contemplar y mejorar la eficiencia mecánica de las estructuras de conexión y ubicación de los componentes del chip.
 
-Sin duda la metodología más costosa de todas. No obstante, la respuesta adecuada si el diseñador necesita de unidades (celdas) más eficientes en términos energéticos y velocidad, de las que es capaz de encontrar en una biblioteca de celdas existentes. Es comúnmente utilizada por empresas dedicadas a la innovación y el desarrollo tecnológico.
+Esta es la metodología más costosa de todas, no obstante, es la respuesta adecuada si el diseñador necesita de unidades (celdas) más eficientes en términos energéticos y velocidad, de las que es capaz de encontrar en una biblioteca de celdas existentes. Es comúnmente utilizada por empresas dedicadas a la innovación y el desarrollo tecnológico.
 
 \subsection{\textbf{ICs programables}}
 
-Estos consisten en dispositivos lógicos programables (PLDs), que son circuitos integrados con configuraciones estándar, predeterminadas. Podemos encontrarlos en algunos ASICs para permitir la personalización de algunas funciones puntuales, es por ello que aunque sean estructuras prediseñadas y flexibles, son consideradas como una rama del diseño de ICs.
+Estos consisten en dispositivos lógicos programables (PLDs), que son circuitos integrados con configuraciones estándar predeterminadas. Algunos ASICs para permiten la personalización de algunas funciones puntuales, por lo que aunque sean estructuras prediseñadas y flexibles, son consideradas como una rama del diseño de ICs.
 
 \subsection{\textbf{ICs semipersonalizados}}
 
@@ -52,23 +54,23 @@ Son aquellos ICs para los cuales existe una biblioteca de celdas estándar y pos
 
 \subsubsection{Basado en arreglos de compuertas}
 
-En este tipo de diseño los transistores se encuentran predefinidos en un patrón dado sobre en la oblea de silicio, este patrón se conoce como arreglo base y a los elementos más pequeños se los conoce como celdas base o celdas primitivas.
+En este tipo de diseño los transistores se encuentran predefinidos en un patrón dado sobre en la oblea de silicio. Este patrón se conoce como arreglo base y a los elementos más pequeños se los conoce como celdas base o celdas primitivas.
 
-En esta técnica el diseñador únicamente define la interconexión de las celdas usando para ello máscaras personalizadas. Así el diseñador escoge de entre una basta biblioteca de celdas prediseñadas y precaracterizadas. Las celdas lógicas suelen ser denominadas como macros. La razón de esto se debe a que el layout \footnote{En este contexto, refiere al anglisismo asociado al concepto de diseño físico} de la celda base es el mismo para cada celda lógica y únicamente se personaliza la interconexión y el enrutado dentro de las celdas y con las celdas adyacentes, de manera similar a un macro de software.
+En esta técnica el diseñador únicamente define la interconexión de las celdas usando para ello máscaras personalizadas. Así el diseñador escoge de entre una basta biblioteca de celdas prediseñadas y precaracterizadas. Las celdas lógicas suelen ser denominadas como macros. La razón de esto se debe a que el trazado de la celda base es el mismo para cada celda lógica y únicamente se personaliza la interconexión y el enrutado dentro de las celdas y con las celdas adyacentes, de manera similar a un macro de software.
 
-Existen subcategorias del uso de esta técnica, pero esa información excede el alcance de esta tésis, por lo que no serán expuestas. Se invita al lector a considerar una bibliografía pertinente \cite{book:johnM1997,book:barrK2006}
+Existen subcategorías del uso de esta técnica, pero esa información excede el alcance de esta tesis, por lo que no serán expuestas. Se invita al lector a considerar una bibliografía pertinente \cite{book:johnM1997,book:barrK2006}
 
 \subsubsection{Basado en celdas estándar}
 
-Un circuito integrado basado en celdas estándar usa celdas lógicas prediseñadas como compuertas "Y", "O", "Flip Flops", "Multiplexores", etc.. Estas celdas se conocen como celdas estándar.
+Un circuito integrado basado en celdas estándar usa celdas lógicas prediseñadas como compuertas ``Y", ``O", ``Flip Flops", ``Multiplexores", etc.. Estas celdas se conocen como celdas estándar.
 
-Suele usarse el término \textit{CBIC} para esta categoría. El área de ubicación de las celdas estándar en un \textit{CBIC}, se construye en hileras, de manera similar a una pared de ladrillos, las celdas estándar pueden y suelen ser utilizadas en conjunto a microcontroladores, o microprocesadores, conocidos como "Mega celdas". Este término también se emplea para bloques totalmente personalizados, y suelen ser denominados como: "Macros a Nivel de Sistema (SLMs)", "Mega Funciones", "Bloques Fijos", o "Bloques Funcionales Estándar (FSBs)".
+Suele usarse el término \textit{CBIC} para esta categoría. El área de ubicación de las celdas estándar en un \textit{CBIC} se construye en hileras, de manera similar a una pared de ladrillos. Las celdas estándar pueden y suelen ser utilizadas en conjunto a microcontroladores, o microprocesadores, conocidos como ``Mega celdas". Este término también se emplea para bloques totalmente personalizados, y suelen ser denominados como: ``Macros a Nivel de Sistema (SLMs)", ``Mega Funciones", ``Bloques Fijos", o ``Bloques Funcionales Estándar (FSBs)".
 
 En esta metodología es diseñador define únicamente la colocación y el enrutado (interconexión entre celdas estándar) de las celdas estándar; sin embargo, estás pueden ser colocadas libremente en el área disponible del dado. Esto implica que las máscaras de fabricación en un \textit{CBIC} son únicas para cada cliente.
 
 Usar \textit{CBICs} tiene enormes ventajas ya que permite hacer diseños más flexibles y optimizarlos en términos de aprovechamiento de área, velocidad o consumo energético. Adicionalmente las bibliotecas de celdas estándar suelen ofrecer las mismas celdas estándar prediseñadas para cumplir distintas las expectativas de desempeño, enfocadas a tamaño, velocidad o energía.
 
-Las principales desventajas consisten en que el tiempo necesario para el diseño suele ser elevado, debe comprarse una biblioteca de celdas estándar, y se está sujeto a las restricciones de esta, y finalmente las máscaras de fabricación serán nuevas con cada nuevo diseño o versión de diseño, lo cual implica tiempo adicional, además de costos adicionales por parte del fabricante.
+Las principales desventajas consisten en que el tiempo necesario para el diseño suele ser elevado, debe comprarse una biblioteca de celdas estándar, y se está sujeto a las restricciones de ésta, y finalmente las máscaras de fabricación serán nuevas con cada nuevo diseño o versión de diseño, lo cual implica tiempo adicional, además de costos adicionales por parte del fabricante.
 
 La información de esta sección se tomó a partir de las fuentes \cite{book:raj2008,book:johnM1997,book:raj2008}
 
@@ -76,20 +78,21 @@ La información de esta sección se tomó a partir de las fuentes \cite{book:raj
 
 Dada la complejidad en el proceso de diseño de circuitos integrados, es imperativo llevar a cabo un diseño estructurado, que use los principios de jerarquización, modularidad, regularidad y localidad para manejar la complejidad del diseño.
 
-El diseño digital VLSI suele ser particionado en 5 niveles de abstracción: diseño de arquitecturas, diseño de microarquitecturas, diseño lógico, diseño de circuitos y diseño físico. Estas etapas son ejecutadas en paralelo, y en muchas ocasiones son depedientes entre si.
+El diseño digital VLSI suele ser particionado en cinco niveles de abstracción: diseño de arquitecturas, diseño de microarquitecturas, diseño lógico, diseño de circuitos y diseño físico. Estas etapas son ejecutadas en paralelo, y en muchas ocasiones son depedientes entre si.
 
-Una manera alternativa de analizar el diseño estructurado es mediante el "diagrama Y" mostrado en la figura \ref{Ychart}. 
+Una manera alternativa de analizar el diseño estructurado es mediante el ``diagrama Y" mostrado en la figura \ref{Ychart}. 
 
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{Gajski_Y_Chart.jpeg}
 \centering
-\caption{Diagrama de Gajski. Espiral que ilustra el flujo digital de diseño de circuitos integrados y cuyas arístas establecen los ámbitos por los que debe atravesar el diseño. Figura de autoría propia, basada en la reproducción de \cite{book:weste2005}, créditos a sus respectivos dueños}
+\caption{Diagrama de Gajski. Espiral que ilustra el flujo digital de diseño de circuitos integrados y cuyas arístas establecen los ámbitos por los que debe atravesar el diseño. Figura de autoría propia basada en lo expuesto en la sección 1.6 del libro: CMOS VLSI Design, Weste, Harris.}
 \label{Ychart}
 \end{figure}
 
+
 El diagrama de Gajski o diagrama Y, permite entender el concepto de abstracción en el diseño digital, pues se parte desde un concepto general de diseño y al interiorizar en el diagrama se desvelan las etapas que llevan hasta la fabricación correcta del circuito integrado.
 
-El dominio por comportamiento describe qué hace el sistema, seguidamente en el dominio estructural, el cual expone la interconexión de los módulos capaces de realizar el comportamiento deseado, eventualmente a los niveles de abstracción más bajos donde se describen las compuertas individuales y las conexiones entre los transistores que las componen. Finalmente en cada nivel de abstracción del dominio físico se explica como se construye físicamente ese nivel de abstracción, en los niveles más altos se considera el diseño del floorplan del chip, donde en esencia se , y consecuentemente al internarse en los niveles más profundos se describen la geometría actual de cada transistor individual.
+%El dominio por comportamiento describe qué hace el sistema, seguidamente en el dominio estructural, el cual expone la interconexión de los módulos capaces de realizar el comportamiento deseado, eventualmente a los niveles de abstracción más bajos donde se describen las compuertas individuales y las conexiones entre los transistores que las componen. Finalmente en cada nivel de abstracción del dominio físico se explica como se construye físicamente ese nivel de abstracción, en los niveles más altos se considera el diseño del floorplan del chip, donde en esencia se , y consecuentemente al internarse en los niveles más profundos se describen la geometría actual de cada transistor individual.
 
 El proceso de diseño puede verse como la transformación desde un dominio hacia otro manteniendo la equivalencia de los dominios. Las descripciones por comportamiento se transforman en descripciones estructurales y estas a su vez son transformadas en descripciones físicas. Cada transformación es validada, ya sea manualmente o mediante herramientas automatizadas. La especificación jerárquica de cada dominio y sucesivamente detallando sus niveles de abstracción es lo que permite diseñar grandes sistemas. 
 
@@ -97,7 +100,7 @@ La razón para describir en detalle los niveles de abstracción y los respectivo
 
 El diagrama Y muestra las transformaciones entre cada dominio y las variaciones entre los niveles de abstracción. El flujo de diseño procede desde los anillos exteriores hacia los interiores, profundizando en niveles de abstracción cada vez más complejos, de acuerdo a una jerarquía establecida.
 
-El apartado anterior corresponde a una libre interpretación de la sección 1.6 de \cite{book:weste2005}.
+Para más detalles ir a la sección 1.6 de \cite{book:weste2005}.
 
 \subsection{Generalidades del flujo de diseño digital}
 \label{sec:gen_d_flow}
@@ -110,26 +113,26 @@ El apartado anterior corresponde a una libre interpretación de la sección 1.6 
 
 Como se mencionó en el apartado anterior, el diseño comienza a dar sus pasos en cuanto es concebida una función o proceso y su comportamiento ha sido modelada en un algoritmo, ya sea secuencial, concurrente o una mezcla de ambos. Este algoritmo se traduce a un lenguaje estandarizado, el cual en el caso de los circuitos integrados digitales corresponde a un \textit{HDL}, que en términos concretos es la descripción digital del circuito integrado o el modelo digital.
 
-Partiendo del modelo digital se puede hacer una verificación de comportamiento, que en términos técnicos se denomina simulación lógica, el modelo digital no es más que un objeto de alto nivel capaz de emular el comportamiento deseado. Su utilidad es poca para el diseñador, ya que no provee datos sobre el desempeño del diseño, únicamente provee 
+Partiendo del modelo digital se puede hacer una verificación de comportamiento, que en términos técnicos se denomina simulación lógica. El modelo digital no es más que un objeto de alto nivel capaz de emular el comportamiento deseado. Su utilidad es poca para el diseñador, ya que no provee datos sobre el desempeño del diseño, únicamente provee 
 información a nivel de comportamiento; sin embargo, es el punto de partida en el flujo de diseño.
 
 Una vez que la simulación lógica es satisfactoria, se procede a usar el modelo por comportamiento y asociar los módulos descritos en él, con unidades lógicas provistas de características de retardos (sincronización de señales), consumo energético, y área, las cuales se encuentran en la biblioteca de la tecnología que se usará en la fabricación. A este proceso se le conoce como síntesis lógica, y genera una base de datos que contiene datos de las celdas estándar y las conexiones entre ellas para ejecutar las funciones abstraídas del modelo de comportamiento.
 
-La base de datos creada en el proceso de síntesis permite generar un nuevo modelo codificado en \textit{HDL} y una primera aproximación del desempeño de los módulos diseñados, i.e. un modelo con la información sobre los retardos de propagación de las señales en las celdas y entre las mismas, generar un presupuesto de la energía disipada y el área necesaria para ubicar las celdas usadas. Este nuevo modelo, denominado como modelo post-síntesis nuevamente es simulado con el mismo arreglo o banco de pruebas usado en la simulación por comportamiento.
+La base de datos creada en el proceso de síntesis permite generar un nuevo modelo codificado en HDL y una primera aproximación del desempeño de los módulos diseñados, i.e. un modelo con la información sobre los retardos de propagación de las señales en las celdas y entre las mismas, un presupuesto de la energía disipada y el área necesaria para ubicar las celdas usadas. Este nuevo modelo, denominado como modelo post-síntesis nuevamente se simula con el mismo arreglo o banco de pruebas usado en la simulación por comportamiento.
 
-La simulación post-síntesis permite observar el retardo de propagación de las señales, y confirmar si las expectativas de sincronización son alcanzadas, también permite verificar si los datos son generados en los plazos necesarios, y poder garantizar una funcionalidad correcta de los módulos y el diseño en lo concerniente al desempeño de las celdas estándar. 
+La simulación post-síntesis permite observar el retardo de propagación de las señales, y confirmar si las expectativas de sincronización son alcanzadas. También permite verificar si los datos son generados en los plazos necesarios, y poder garantizar una funcionalidad correcta de los módulos y el diseño en lo concerniente al desempeño de las celdas estándar. 
 
-Cuando los resultados obtenidos en la síntesis lógica y la simulación respectiva sean satisfactorios, se toma el modelo post-síntesis y se usa esta información para empezar con el floorplan del chip. Las celdas estándar son invocadas a un área determinada, y posteriormente se establecen las conexiones que permiten implementar los módulos abstraídos en la primera etapa del diseño (el modelo de comportamiento). Este proceso recibe el nombre de síntesis física o implementación física, en esta tésis se usará la palabra síntesis para referirse a la síntesis lógica, y la palabra implementación será usada para referirse a la síntesis física.
+Cuando los resultados obtenidos en la síntesis lógica y la simulación respectiva sean satisfactorios, se toma el modelo post-síntesis y se usa esta información para empezar con el plano de piso (floorplan) del chip. Las celdas estándar son invocadas a un área determinada, y posteriormente se establecen las conexiones que permiten implementar los módulos abstraídos en la primera etapa del diseño (el modelo de comportamiento). Este proceso recibe el nombre de síntesis física o implementación física, ()en esta tésis se usará la palabra síntesis para referirse a la síntesis lógica, y la palabra implementación será usada para referirse a la síntesis física).
 
-Una vez hecho lo anterior, se genera una nueva base de datos, la cual tendrá información más precisa sobre el diseño, nuevamente en términos de sincronización de señales, consumo energético y aprovechamiento de área, incluyendo los retardos debido a los efectos parasíticos, la distancia que debe recorrer una señal al conectarse de una celda a otra o un puerto, etc, las perdidas resistivas del alambrado, entre otros efectos que serán expuestos más adelante.
+Posteriormente, se genera una nueva base de datos con información más precisa sobre el diseño. Retardos debido a efectos parasíticos, distancia del recorrido de las señales, perdidas resistivas del alambrado, y otros efectos que serán expuestos más adelante.
 
-Nuevamente se genera una base de datos con la información del colocamiento y el enrutado (Place\&Route), así como los efectos sobre el tiempo de propagación de las señales, mediante la esta base de datos se generan, un modelo codificado en \textit{HDL} para la verificación del diseño, y el modelo de los efectos sobre el temporizado y la sincronización de las señales. En esta etapa es posible obtener una respuesta más precisa del diseño. Al igual que en la etapa anterior también se crean reportes de consumo energético, aprovechamiento de área, calidad de resultados, etc.
+Nuevamente se genera una base de datos con la información del colocamiento y el enrutado (\textit{Place\&Route}), que incluye modelos más de sincronía y potencia más completos, y otra representación HDL del diseño post implementación. Esta etapa permite obtener una respuesta más precisa de diseño. Al igual que en la etapa anterior, se crean reportes de consumo energético, aprovechamiento de área, calidad de resultados (QOR, que es un compendio de la información más relevante de todos los reportes generados), etc.
 
-Cuando una simulación post-implementación es satisfactoria se procede a dar por concluído el flujo, y a continuación se establecen 2 panorámas.
+Cuando una simulación post-implementación es satisfactoria se procede a dar por concluido el flujo, y a continuación se establecen dos panoramas.
 
-En el primer caso nuestro diseño está completo por lo que se procede a compilar la base de datos en un archivo estándar para condensar la información necesaria para el fabricante, y este valorará si el diseño tiene probabilidades altas de ser fabricado con éxito, siendo así la información suministrada será usada para desarrollar las máscaras necesarias para la construcción del chip.
+En el primer caso nuestro diseño está completo por lo que se procede a compilar la base de datos en un archivo estándar para condensar la información necesaria para el fabricante. Aquí se valora si el diseño tiene probabilidad alta de ser fabricado con éxito, siendo así la información suministrada será usada para desarrollar las máscaras necesarias para la construcción del chip.
 
-En el segundo escenario consiste en que el diseño en el que se ha estado trabajando no es el producto final, sino que forma parte de otro diseño más complejo y grande, el cual aún no se haya terminado, en ese caso la base de datos servirá para generar una macro celda que será utilizada en diseños posteriores.
+El segundo escenario consiste en que el diseño en el que se ha estado trabajando no es el producto final, sino que forma parte de otro diseño más complejo y grande, el cual aún no se haya terminado. En ese caso la base de datos servirá para generar una macro celda que será utilizada en diseños posteriores.
 
 En la figura \ref{Dflow1} se aprecia un resumen gráfico de la explicación anterior.
 
