@@ -31,7 +31,7 @@ La clasificación del diseño de circuitos integrados se puede apreciar en el es
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{Tipos_de_ICs.jpeg}
 \centering
-\caption{Tipos de Diseño de Circuitos Integrados}
+\caption{Tipos de Diseño de Circuitos Integrados. Figura de autoría propia.}
 \label{ICs}
 \end{figure}
 Como puede observarse el diseño de circuitos integrados (de aquí en adelante ICs\footnote{ICs: acrónimo en inglés para circuitos integrados}) se puede clasificar a grosso modo en tres tipos principales:
@@ -85,7 +85,7 @@ Una manera alternativa de analizar el diseño estructurado es mediante el ``diag
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{Gajski_Y_Chart.jpeg}
 \centering
-\caption{Diagrama de Gajski. Espiral que ilustra el flujo digital de diseño de circuitos integrados y cuyas arístas establecen los ámbitos por los que debe atravesar el diseño. Figura de autoría propia basada en lo expuesto en la sección 1.6 del libro: CMOS VLSI Design, Weste, Harris.}
+\caption{Diagrama de Gajski. Espiral que ilustra el flujo digital de diseño de circuitos integrados y cuyas arístas establecen los ámbitos por los que debe atravesar el diseño. Figura de autoría propia basada en lo expuesto en la sección 1.6 de \cite{book:weste2005}.}
 \label{Ychart}
 \end{figure}
 
@@ -107,7 +107,7 @@ Para más detalles ir a la sección 1.6 de \cite{book:weste2005}.
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{Flujo_Digital.jpeg}
 \centering
-\caption{Esquema representativo e ilustrativo del flujo de diseño de circuitos integrados digitales}
+\caption{Esquema representativo e ilustrativo del flujo de diseño de circuitos integrados digitales. Figura de autoría propia.}
 \label{Dflow1}
 \end{figure}
 
@@ -122,7 +122,7 @@ La base de datos creada en el proceso de síntesis permite generar un nuevo mode
 
 La simulación post-síntesis permite observar el retardo de propagación de las señales, y confirmar si las expectativas de sincronización son alcanzadas. También permite verificar si los datos son generados en los plazos necesarios, y poder garantizar una funcionalidad correcta de los módulos y el diseño en lo concerniente al desempeño de las celdas estándar. 
 
-Cuando los resultados obtenidos en la síntesis lógica y la simulación respectiva sean satisfactorios, se toma el modelo post-síntesis y se usa esta información para empezar con el plano de piso (floorplan) del chip. Las celdas estándar son invocadas a un área determinada, y posteriormente se establecen las conexiones que permiten implementar los módulos abstraídos en la primera etapa del diseño (el modelo de comportamiento). Este proceso recibe el nombre de síntesis física o implementación física, ()en esta tésis se usará la palabra síntesis para referirse a la síntesis lógica, y la palabra implementación será usada para referirse a la síntesis física).
+Cuando los resultados obtenidos en la síntesis lógica y la simulación respectiva sean satisfactorios, se toma el modelo post-síntesis y se usa esta información para empezar con el plano de piso (floorplan) del chip. Las celdas estándar son invocadas a un área determinada, y posteriormente se establecen las conexiones que permiten implementar los módulos abstraídos en la primera etapa del diseño (el modelo de comportamiento). Este proceso recibe el nombre de síntesis física o implementación física, en esta tésis se usará la palabra síntesis para referirse a la síntesis lógica, y la palabra implementación será usada para referirse a la síntesis física).
 
 Posteriormente, se genera una nueva base de datos con información más precisa sobre el diseño. Retardos debido a efectos parasíticos, distancia del recorrido de las señales, perdidas resistivas del alambrado, y otros efectos que serán expuestos más adelante.
 
@@ -145,7 +145,7 @@ Synopsys es una empresa que brinda herramientas de diseño asistido por computad
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{Front_End.jpeg}
 \centering
-\caption{Esquema ilustrativo del flujo de diseño de circuitos integrados digitales, en la etapa inicial de síntesis lógica (conocida como etapa de front end). Imagen de autoría propia}
+\caption{Esquema ilustrativo del flujo de diseño de circuitos integrados digitales, en la etapa inicial de síntesis lógica (conocida como etapa de front end). Imagen de autoría propia.}
 \label{fe}
 \end{figure}
 
@@ -168,7 +168,7 @@ Cómo se observa desde el diagrama de Gajski (figura \ref{Ychart}), las herramie
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{Back_End.jpeg}
 \centering
-\caption{Esquema ilustrativo del flujo de diseño de circuitos integrados digitales, enfocado a las herramientas de síntesis física, en esencia las herramientas de \textit{Back End}. Figura de autoría propia}
+\caption{Esquema ilustrativo del flujo de diseño de circuitos integrados digitales, enfocado a las herramientas de síntesis física, en esencia las herramientas de \textit{Back End}. Figura de autoría propia.}
 \label{be}
 \end{figure}
 

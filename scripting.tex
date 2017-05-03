@@ -1,4 +1,4 @@
-\chapter{Flujo de Diseño Digital de Circuitos Integrados con las herramientas de Synopsys. Estructura de scripting}
+\chapter[Flujo de Diseño Digital]{Flujo de Diseño Digital de Circuitos Integrados con las herramientas de Synopsys. Estructura de scripting}
 \label{ch:scripting}
 
 A continuación se detalla la estructura propuesta para implementar un flujo de diseño de circuitos integrados, y se expone como fueron sometidos los módulos de un microprocesador de aplicación específica basado en la plataforma abierta RISC-V. Con el fin de demostrar la efectividad del flujo de diseño digital propuesto. Esta estructura está basada en el manual sobre el uso de las herramientas de Synopsys en el flujo de diseño de ASICs, que ya ha sido desarrollado en el DCILab \cite{FlujoJairo2016}.
@@ -29,7 +29,7 @@ Finalmente se afirma que la estructura es continua, ya que la navegación dentro
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{estructura_1.jpeg}
 \centering
-\caption{Esquema de la jerarquía de directorios y archivos para implementar el flujo de diseño digital. El archivo .gitignore es un archivo oculto, que contiene información para que la herramienta de control de versiones usada en el DCILab opere de forma personalizada. Este archivo carece de relevancia para la estructura del flujo; sin embargo, permite mantener un repositorio más ordenado.}
+\caption{Esquema de la jerarquía de directorios y archivos para implementar el flujo de diseño digital. El archivo .gitignore es un archivo oculto, que contiene información para que la herramienta de control de versiones usada en el DCILab opere de forma personalizada. Este archivo carece de relevancia para la estructura del flujo; sin embargo, permite mantener un repositorio más ordenado. Figura de autoría propia.}
 \label{directorios}
 \end{figure}
 
@@ -37,7 +37,7 @@ Finalmente se afirma que la estructura es continua, ya que la navegación dentro
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{estructura.jpeg}
 \centering
-\caption{Esquema completo de la jerarquía de directorios y archivos que implementan el flujo de diseño digital. El bloque \textbf{TECH} hace referencia a la biblioteca de la tecnología. No es una buena idea agregar este directorio en la misma ubicación que el proyecto ya que es un directorio de tamaño considerable y copiarlo en cada proyecto representa un mal uso de los recursos.}
+\caption{Esquema completo de la jerarquía de directorios y archivos que implementan el flujo de diseño digital. El bloque \textbf{TECH} hace referencia a la biblioteca de la tecnología. No es una buena idea agregar este directorio en la misma ubicación que el proyecto ya que es un directorio de tamaño considerable y copiarlo en cada proyecto representa un mal uso de los recursos. Figura de autoría propia.}
 \label{directorios}
 \end{figure}
 
@@ -54,7 +54,7 @@ Si existen copias del proyecto en más de un computador, se tendrá una ruta abs
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{s_bash.jpeg}
 \centering
-\caption{Esquema ilustrativo de la relación entre los scripts de bash que inicializan las herramientas EDA y crean las varibles que contienen los punteros a los archivos y la biblioteca de la tecnología de integración}
+\caption{Esquema ilustrativo de la relación entre los scripts de bash que inicializan las herramientas EDA y crean las varibles que contienen los punteros a los archivos y la biblioteca de la tecnología de integración. Figura de autoría propia.}
 \label{bash_syn}
 \end{figure}
 
@@ -110,7 +110,7 @@ En la figura \ref{s_syn} se observa como la síntesis lógica se ejecuta mediant
 \begin{figure}[h]
 \includegraphics[scale=0.55]{log_syn.jpeg}
 \centering
-\caption{Diagrama de flujo del scripting que ejecuta la síntesis lógica}
+\caption{Diagrama de flujo del scripting que ejecuta la síntesis lógica. Figura de autoría propia.}
 \label{s_syn}
 \end{figure}
 
@@ -131,7 +131,7 @@ Con TCL la lectura y análisis de los módulos se puede realizar de forma progra
 \begin{figure}[h]
 \includegraphics[scale=0.45]{read_script.jpeg}
 \centering
-\caption{Algoritmo recursivo de lectura y análisis de los módulos \textit{HDL} del diseño}
+\caption{Algoritmo recursivo de lectura y análisis de los módulos \textit{HDL} del diseño. Figura de autoría propia.}
 \label{s_read}
 \end{figure}
 
@@ -222,7 +222,7 @@ La compilación consiste en traducir el RTL en estructuras booleanas o lógicas,
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{Compile.jpeg}
 \centering
-\caption{Ilustración del proceso de compilación de front end. En figura \textbf{$a)$} se aprecia la estructura jerárquica de códigos en \textit{HDL}, y en la figura \textbf{$b)$} la jerarquía abstraída, implementada mediante distintos niveles de elementos digitales, pasando desde funciones complejas, módulos digitales avanzados, hasta compuertas lógicas fundamentales. Aunque no siempre se llega hasta estas últimas.}
+\caption{Ilustración del proceso de compilación de front end. En figura \textbf{$a)$} se aprecia la estructura jerárquica de códigos en HDL, y en la figura \textbf{$b)$} la jerarquía abstraída, implementada mediante distintos niveles de elementos digitales, pasando desde funciones complejas, módulos digitales avanzados, hasta compuertas lógicas fundamentales. Aunque no siempre se llega hasta estas últimas. Figura de autoría propia.}
 \label{comp}
 \end{figure}
 
@@ -281,7 +281,7 @@ Los directorios de simulación contienen un script de precompilación y o simula
 \begin{figure}[h]
 \includegraphics[scale=0.7]{beha_sim.jpeg}
 \centering
-\caption{Estructura del script de simulación por comportamiento. El archivo \textit{source\_list} apunta hacia el RTL, que se ubica en algún subdirectorio de \texttt{source}. El script de simulación llama al archivo \texttt{source\_list} al invocar al simulador VCS.}
+\caption{Estructura del script de simulación por comportamiento. El archivo \textit{source\_list} apunta hacia el RTL, que se ubica en algún subdirectorio de \texttt{source}. El script de simulación llama al archivo \texttt{source\_list} al invocar al simulador VCS. Figura de autoría propia.}
 \label{beha_sim}
 \end{figure}
 
@@ -292,7 +292,7 @@ La simulación post síntesis requiere que el simulador genere un objeto de alto
 \begin{figure}[h]
 \includegraphics[scale=0.7]{post_syn_sim.jpeg}
 \centering
-\caption{Estructura del script de simulación post síntesis. El archivo \texttt{precompile}, apunta a la biblioteca de simulación y al netlist. El archivo \texttt{source\_list} apunta hacia el \textit{netlist}, el código de estímulo, y la biblioteca de simulación. El \texttt{script} usado invoca al simulador, luego precompila y después llama al archivo \texttt{source\_list} para realizar la simulación}
+\caption{Estructura del script de simulación post síntesis. El archivo \texttt{precompile}, apunta a la biblioteca de simulación y al netlist. El archivo \texttt{source\_list} apunta hacia el \textit{netlist}, el código de estímulo, y la biblioteca de simulación. El \texttt{script} usado invoca al simulador, luego precompila y después llama al archivo \texttt{source\_list} para realizar la simulación. Figura de autoría propia.}
 \label{psyn_sim}
 \end{figure}
 
@@ -372,7 +372,7 @@ Respecto al árbol de reloj deben considerarse los siguientes aspectos:
 \item Identificador del nombre del reloj.
 \item Inserción de celdas frontera cercanas a los puertos de reloj para el diseño basado en jerarquía de bloques.
 \item Atributo de apiñado de OCV (OCV Clustering). Este atributo permite mejorar la distribución del reloj a través de ramas de registros.
-\item Reglas para la reubicación y redimensionamiento de de las compuertas y \textit{búfers} para optimizar la síntesis del árbol de reloj.
+\item Reglas para la reubicación y redimensionamiento de de las compuertas y búfers para optimizar la síntesis del árbol de reloj.
 
 Muchos de estos atributos funcionan en conjunto con las restricciones definidas en el proceso de síntesis lógica, como lo son la incertidumbre, o la latencia del reloj. También el \textit{netlist} generado es de importancia pues con base en éste se le encomienda a la herramienta implementar el árbol de reloj.
 \end{itemize}
@@ -434,7 +434,7 @@ Los últimos archivos de salida relevantes para el flujo corresponde al archivo 
 \begin{figure}[ht]
 \includegraphics[width=\textwidth]{phy_syn.jpeg}
 \centering
-\caption{Diagrama de flujo que expone el proceso genérico de la implementación física en la herramienta \textit{IC Compiler}}
+\caption{Diagrama de flujo que expone el proceso genérico de la implementación física en la herramienta \textit{IC Compiler. Figura de autoría propia.}}
 \label{fig:phy_script}
 \end{figure}
 
@@ -447,7 +447,7 @@ El proceso no se detallará pues sigue la misma estructura que lo expuesto para 
 \begin{figure}[ht]
 \includegraphics[scale=0.65]{post_phy_sim.jpeg}
 \centering
-\caption{Estructura del script de bash para la simulación post implementación}
+\caption{Estructura del script de bash para la simulación post implementación. Figura de autoría propia.}
 \label{fig:phy_sim}
 \end{figure}
 
@@ -460,20 +460,20 @@ PrimeTime es una herramienta que se usa tanto para evaluar un diseño post sínt
 
 \begin{figure}[ht]
 \includegraphics[scale=0.65]{Back_End_STA.jpeg}
-\caption{Diagrama de flujo del análsis de temporizado estático (STA)}
+\caption{Diagrama de flujo del análsis de temporizado estático (STA). Figura de autoría propia.}
 \label{fig:staflow}
 \end{figure}
 
 Como se puede apreciar en la figura \ref{fig:staflow}, el flujo de operación de esta herramienta es bastante simple, para la misma se ha desarrollado un pequeño script, que inicializa la herramienta y define los punteros hacia los archivos fuente y la biblioteca de la tecnología.
 
-Luego de inicializar la herramienta, se cargan los archivos fuente que consisten en: el archivo verilog con el GLN implementado, el archivo SDF con la información de los retardos de propagación a través del GLN, el archivo SDC con las restricciones de diseño de Synopsys (principalmente las de temporizado), y finalmente el archivo SPEF para incluir el efecto de las parasitancias en el análisis. También se pueden incluir otros archivos para realizar otros tipos de análisis como son archivos SAIF, que indican el factor de actividad de las celdas. De igual manera se puede estimular el diseño con otro conjunto de restricciones, que corresponden con la misma sintaxis usada en el script de TCL para definir las restricciones en la síntesis lógica (*\_cons.tcl).
+Luego de inicializar la herramienta, se cargan los archivos fuente que consisten en: el archivo verilog con el GLN implementado, el archivo SDF con la información de los retardos de propagación a través del GLN, el archivo SDC con las restricciones de diseño de Synopsys (principalmente las de temporizado), y finalmente el archivo SPEF para incluir el efecto de las parasitancias en el análisis. También se pueden incluir otros archivos para realizar otros tipos de análisis como son archivos SAIF, que indican el factor de actividad de las celdas. De igual manera se puede estimular el diseño con otro conjunto de restricciones, que corresponden con la misma sintaxis usada en el script de TCL para definir las restricciones en la síntesis lógica (\texttt{*\_cons.tcl}).
 
 Debido a que los diseños grandes y complejos presentan una enorme cantidad de restricciones, es necesario efectuar análisis multimodales y multiesquina\footnote{Multiesquina: Traducción literal de multicorner para referirse a que se evaluarán todas las condiciones esquina individualmente}. PrimeTime permite generar reportes enfocados a escenarios particures de temporizado. Ya sea para evaluar si el diseño cumple con las restricciones de diseño específicadas en una esquina o esquinas determinadas, PrimeTime también permite hacer un análisis gráfico, y generar recomendaciones para alcanzar las restricciones de sincronización definidas.
 
 \begin{figure}[ht]
 \includegraphics[scale=0.65]{phy_sta.jpeg}
 \centering
-\caption{Diagrama de flujo del script para un análisis básico de STA en la herramienta PrimeTime de Synopsys.}
+\caption{Diagrama de flujo del script para un análisis básico de STA en la herramienta PrimeTime de Synopsys. Figura de autoría propia.}
 \label{fig:stascript}
 \end{figure}
 
@@ -492,15 +492,15 @@ Las dos herramientas extra mencionadas pertenecen a Synopsys, y son el Library\_
 No se expondrá mucho sobre el Library\_Compiler, pues su uso es muy simple, y muy puntual. Esta herramienta es necesaria ya que al ejecutar el generador de memorias, el resultado de la síntesis de un IP Core son los archivos:
 \begin{itemize}
 \item Un modelo Verilog GLN para instanciar la celda generada. Algo equivalente a lo que se obtendría efectuando una síntesis lógica en \textit{DesignCompiler}.
-\item Archivo *.dat, que es una tabla \textit{ASCII} con un resumen de la información geométrica y eléctrica de la celda.
-\item Un archivo tipo PostScript, que es una pequeña hoja de datos con diagramas de sincronía e información sobre los puertos en formato ".ps".
-\item Archivo *.vclef, que contiene la información de la distribución de pads, diodos y metales para el enrutado (interconexión) y conexión externa en la celda.
-\item Archivo *.clf, necesario para las herramientas de \textit{Cadence} que es otro provedor de herramientas para diseño VLSI.  Sin embargo, los \textit{foundries} suelen solicitar este archivo por motivos de estandarización, así que conviene conservarlo. Contiene información relacionada con la antenas y los diodos de protección.
-\item Un archivo en formato Liberty (*.lib), que es un estándar para definir los parámetros de sincronía y potencia de la celda, así también como la conectividad con el exterior. Este archivo en conjunto al vclef permiten definir la celda física del IP Core.
-\item Un archivo *.data, que es necesario para el STA con PrimeTime; este archivo no obstante requiere precompilarse con un script de PERL para obtener el archivo *.sdf que necesita PrimeTime
+\item Archivo \texttt{*.dat}, que es una tabla \textit{ASCII} con un resumen de la información geométrica y eléctrica de la celda.
+\item Un archivo tipo PostScript, que es una pequeña hoja de datos con diagramas de sincronía e información sobre los puertos en formato ``\texttt{.ps}".
+\item Archivo \texttt{*.vclef}, que contiene la información de la distribución de pads, diodos y metales para el enrutado (interconexión) y conexión externa en la celda.
+\item Archivo \texttt{*.clf}, necesario para las herramientas de \textit{Cadence} que es otro provedor de herramientas para diseño VLSI.  Sin embargo, los \textit{foundries} suelen solicitar este archivo por motivos de estandarización, así que conviene conservarlo. Contiene información relacionada con la antenas y los diodos de protección.
+\item Un archivo en formato Liberty (\texttt{*.lib}), que es un estándar para definir los parámetros de sincronía y potencia de la celda, así también como la conectividad con el exterior. Este archivo en conjunto al \texttt{*.vclef} permiten definir la celda física del IP Core.
+\item Un archivo \texttt{*.data}, que es necesario para el STA con PrimeTime; este archivo no obstante requiere precompilarse con un script de PERL para obtener el archivo \texttt{*.sdf} que necesita PrimeTime
 \end{itemize}
 
-A partir de estos archivos, Library Compiler traduce la biblioteca en formato liberty (*.lib) al formato de base de datos de Synopsys (*.db), con el fin de poder incluir la celda de memoria generada en el flujo de front end. Milkyway compila la información de la biblioteca de la tecnología, el archivo *.vclef y la biblioteca *.db, para así desarrollar una nueva biblioteca *.mw que permita incluir la celda de memoria en el flujo de back end.
+A partir de estos archivos, Library Compiler traduce la biblioteca en formato liberty (\texttt{*.lib}) al formato de base de datos de Synopsys (\texttt{*.db}), con el fin de poder incluir la celda de memoria generada en el flujo de front end. Milkyway compila la información de la biblioteca de la tecnología, el archivo \texttt{*.vclef} y la biblioteca \texttt{*.db}, para así desarrollar una nueva biblioteca \texttt{*.mw} que permita incluir la celda de memoria en el flujo de back end.
 
 Las instrucciones necesarias para compilar la biblioteca en formato \textit{liberty} a una en formato \textit{database} son las siguientes, observe que la palabra library\_name indica que se debe colocar el nombre de la biblioteca que se definió al usar el generador de SRAMs.
 
@@ -510,14 +510,14 @@ write_lib <library_name> -format db -output library.db
 \end{lstlisting}
 
 
-El script para ejecutar la herramienta Milkyway sigue un proceso similar al de la síntesis física. Primero se configuran los punteros y las bibliotecas de la tecnología. Luego se crea o se abre la biblioteca *.mw, para incluir las nuevas celdas. Posteriormente al inicializar la biblioteca Milkyway se leen los archivos *.vclef, aquí es importante destacar que la referencia un archivo particular de la tecnología (\texttt{lefin\_layer\_map.txt}) debe hacerse con cuidado. Este archivo contiene alias de los nombres de los metales de la tecnología y sin ellos es imposible generar de forma exitosa la biblioteca física. Los alias definidos en el archivo \texttt{lefin\_layer\_map.txt} deben ser congruentes con los nombres de los metales de la tecnología. De no ser así, deben ser editados. Este archivo debe incluirse ya que la herramienta de generación de SRAM nombra de forma diferente a los metales cuando genera los archivos *.vclef. Finalmente se leen los archivos *.db para actualizar la información de los puertos, en términos de la temporización de señales.
+El script para ejecutar la herramienta Milkyway sigue un proceso similar al de la síntesis física. Primero se configuran los punteros y las bibliotecas de la tecnología. Luego se crea o se abre la biblioteca *.mw, para incluir las nuevas celdas. Posteriormente al inicializar la biblioteca Milkyway se leen los archivos *.vclef, aquí es importante destacar que la referencia un archivo particular de la tecnología (\texttt{lefin\_layer\_map.txt}) debe hacerse con cuidado. Este archivo contiene alias de los nombres de los metales de la tecnología y sin ellos es imposible generar de forma exitosa la biblioteca física. Los alias definidos en el archivo \texttt{lefin\_layer\_map.txt} deben ser congruentes con los nombres de los metales de la tecnología. De no ser así, deben ser editados. Este archivo debe incluirse ya que la herramienta de generación de SRAM nombra de forma diferente a los metales cuando genera los archivos \texttt{*.vclef}. Finalmente se leen los archivos \texttt{*.db} para actualizar la información de los puertos, en términos de la temporización de señales.
 
 Como una consideración final, para mantener la regularidad, localidad y continuidad en los directorios y archivos, conviene tener una única biblioteca Milkyways para los IP Cores. Así cada nueva macro celda se abstraerá de una única biblioteca auxiliar.
 
 \begin{figure}[ht]
 \includegraphics[width=\textwidth]{RAM_Syn.jpeg}
 \centering
-\caption{a) Diagrama de flujo de la síntesis de los \textit{IP Cores} de memorias SRAM y generación de las bibliotecas autónomas. \newline b) Estructura de directorios y archivos que intervienen en la síntesis de los IPcores de las memorias, herramientas involucradas y los archivos generados.}
+\caption{a) Diagrama de flujo de la síntesis de los \textit{IP Cores} de memorias SRAM y generación de las bibliotecas autónomas. \newline b) Estructura de directorios y archivos que intervienen en la síntesis de los IPcores de las memorias, herramientas involucradas y los archivos generados. Figuras de autoría propia.}
 \end{figure}
 
 \newpage

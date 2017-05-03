@@ -49,9 +49,10 @@
 %
 \newboolean{draftmode}                  % boolean used to control draft-mode
 % Ensure that only one of the next two lines is active:
-\setboolean{draftmode}{true}            % turn draft mode on
+\setboolean{draftmode}{false}            % turn draft mode on
 %\setboolean{draftmode}{false}           % turn draft mode off
 % --------------------------------------------------------------------------
+
 %
 % GENERAL AUTHOR, TITLE AND KEYWORDS
 %
@@ -59,7 +60,7 @@
 \newcommand{\scriptAuthor}{Reinaldo Castro González}
 
 % Título de la tesis
-\newcommand{\scriptTitle}{Integración de un microprocesador de aplicación específica en un flujo de diseño de circuitos integrados digitales, usando una tecnología CMOS de 0,13 micrómetros para posteriormente ser integrado al proyecto SiRPA.} 
+\newcommand{\scriptTitle}{Integración de un microprocesador de aplicación específica en un flujo de diseño de circuitos integrados digitales.}%, usando una tecnología CMOS de 0,13 micrómetros para posteriormente ser integrado al proyecto SiRPA} 
 
 % Keywords
 \newcommand{\scriptKeywords}{Back End, Front End, GLN, Integración, RTL, Script, Síntesis, STA, Synopsys}
@@ -83,18 +84,24 @@
 
 % --------------------------------------------------------------------------
 \begin{document}
+  % Sangría
+  %\setlength{\parindent}{0.8cm}
   % where to look for graphics
   \graphicspath{{./}{./fig/}}
 
   \pagenumbering{alph}
   % fix some terms not activated due to the bug of hyperref with spanish.
   \renewcommand{\tablename}{Tabla}
+  \renewcommand{\lstlistingname}{Listado}
   \renewcommand{\listtablename}{\'Indice de tablas}
+  %\renewcommand{\lstlistoflistings}{\'Indice de listados}
+  \renewcommand\lstlistlistingname{\'Indice de listados}
   \renewcommand{\examplesolution}{Solución}
   %\renewcommand{\lstname}{Código}
   \pagestyle{empty}
 
   \include{titlepage}                                 % Titlepage
+  \include{acta}
   \include{disclaimer}
   \include{resumen}
   \include{dedicatoria}
@@ -112,6 +119,7 @@
   \tableofcontents                                      % Table of contents
   \listoffigures                                        % List of figures
   \listoftables                                         % List of tables
+  \lstlistoflistings
 
 \ifdraft{%
   % todo's                                              % TODOs
@@ -133,8 +141,8 @@
   \include{intro}
   \include{teoria}
   \include{scripting}
-  \include{syn_asp}
-  \include{imp_alu}
+  \include{syn_asp_2}
+  \include{imp_alu_2}
   \include{conclusiones}
 
   %----------------------------------------------------------------------------

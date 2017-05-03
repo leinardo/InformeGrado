@@ -76,7 +76,7 @@
 % locally added packages
 \usepackage{float}                      % really place figures "here" (H)
 \usepackage{booktabs}                   % book type tabulars
-
+\usepackage{sty/notoccite}
 % the own style with options depending on the draft mode
 \ifdraft{%
 \usepackage[todo]{sty/tecStyle}         % some command definitions
@@ -90,7 +90,7 @@
 \renewcommand{\examplelistname}{Índice de ejemplos}
 \renewcommand{\examplename}{Ejemplo}
 
-\renewcommand{\lstlistingname}{Código}% Listing -> Algorithm
+\renewcommand{\lstlistingname}{Listado}% Listing -> Algorithm
 %\renewcommand{\lstlistlistingname}{List of \lstlistingname s}% List of Listings -> List of Algorithms
 
 
@@ -334,7 +334,8 @@
 }
 \addto\extrasspanish{\renewcommand{\tablename}{Tabla}}
 \addto\extrasspanish{\renewcommand{\listtablename}{\'Indice de tablas}}
-
+\addto\extrasspanish{\renewcommand{\lstlistingname}{Listado}}
+\addto\extrasspanish{\renewcommand{\lstlistoflistings}{\'Indice de listados}}
 %
 % paragraph layout
 %
